@@ -1,0 +1,52 @@
+{
+  "title": "条件",
+  "namespace": "xgraph.coms.if",
+  "author": "CheMingjun",
+  "author_name": "车明君",
+  "version": "1.0.0",
+  "description": "条件判断",
+  "icon": "./icon.png",
+  "runtime": "./IF.tsx",
+  "inputs": [
+    {
+      "id": "expression",
+      "title": "条件",
+      "schema": {
+        "request": [
+          {
+            "type": "follow"
+          }
+        ],
+        "response": [
+          {
+            "type": "follow"
+          }
+        ]
+      }
+    }
+  ],
+  "slots": [
+    {
+      "id": "true",
+      "title": "条件为真",
+      "type": "scope",
+      "inputs": [
+        {
+          "id": "expression",
+          "title": "当前条件"
+        }
+      ]
+    },
+    {
+      "id": "false",
+      "title": "条件为假",
+      "type": "scope",
+      "inputs": [
+        {
+          "id": "expression",
+          "title": "当前条件"
+        }
+      ]
+    }
+  ]
+}

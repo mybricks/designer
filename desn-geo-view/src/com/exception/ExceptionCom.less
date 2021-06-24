@@ -1,0 +1,53 @@
+@import url('../../theme');
+
+.com {
+  transform: translateZ(0);
+  //border: 1px solid transparent;
+  //display: flex;
+  position: relative;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: 100%;
+  //justify-content: center;
+  //&:hover:not(.focus){
+  //  outline: 2px solid @color-primary !important;
+  //  outline-offset: -1px;
+  //}
+}
+
+.desn {
+  cursor: pointer;
+  pointer-events: auto !important;
+
+  > * {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    * {
+      user-select: none;
+      pointer-events: none;
+    }
+  }
+}
+
+.focus {
+  border-color: @color-primary;
+  //box-shadow: @box-shadow-hover;
+  .com-title {
+    //color: @color-primary0 !important;
+  }
+}
+
+.error {
+  font-size: 12px;
+  color: @color-error;
+  overflow: hidden;
+}
+
+.warn {
+  font-size: 12px;
+  color: @color-warning;
+  overflow: hidden;
+}

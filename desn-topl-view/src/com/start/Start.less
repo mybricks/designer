@@ -1,0 +1,66 @@
+@import url('../../theme');
+
+.com {
+  display: flex;
+  user-select: none;
+  justify-content: center;
+  color: #AAA;
+}
+
+.focus {
+  background-color: @color-primary;
+  color: #fff;
+  font-weight: 700;
+
+  .com-title {
+    //color: @color-primary0 !important;
+  }
+
+  .outputPins {
+    > div {
+      border-color: @color-primary !important;
+      background-color: #DDD;
+
+      a {
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+.warn {
+  //border: 1px dashed @color-warning;
+
+  .info {
+    z-index: 100;
+    pointer-events: visible;
+    height: 22px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: max-content;
+    //bottom: 100%;
+    left: 0;
+    border: 1px solid #AAA;
+    font-style: italic;
+    background-color: @color-warning;
+    color: #333;
+
+    > ul {
+      padding: 2px;
+
+      li {
+        margin: 0px 5px;
+      }
+    }
+
+    > p {
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0px 5px;
+      font-weight: 500;
+    }
+  }
+}

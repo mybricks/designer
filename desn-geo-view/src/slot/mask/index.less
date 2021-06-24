@@ -1,0 +1,226 @@
+﻿@import url('../../theme');
+
+@dotSize: 5px;
+@dotShift: -4px;
+.hover {
+  box-sizing: border-box;
+  //outline-offset: -1px;
+  position: absolute;
+  z-index: 10000;
+  user-select: none;
+  pointer-events: none;
+
+  outline: 1px dashed @color-primary;
+  //background-color: rgba(250,100,0,.05);
+  //opacity: .1;
+  //outline-offset: -1px;
+
+  .itemTitle {
+    width: max-content;
+    background-color: @color-primary;
+    color: #FFF;
+    font-weight: 700;
+    position: absolute;
+    padding: 2px 6px;
+    bottom: calc(100% - 0px);
+    left: 0px;
+    border-radius: 3px 3px 0px 0px;
+    outline: 1px solid rgba(255, 255, 255, 50%);
+
+    span {
+      display: inline-block;
+      pointer-events: visible;
+
+      &:not(:first-child) {
+        &:before {
+          content: '>';
+          padding: 0px 10px;
+        }
+      }
+
+      &:not(:last-child) {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .diagrams {
+    width: max-content;
+
+    .event {
+      padding: 2px 5px;
+      width: fit-content;
+      border: 1px solid #CCC;
+
+      span {
+        font-size: 16px !important;
+      }
+
+      font-style: italic;
+      background-color: #fff4ce; //#FFFDE3
+    }
+  }
+}
+
+.editing {
+  outline: 1px dashed #E3AFB7 !important;
+  //border: 1px dashed @color-secondary !important;
+  .itemTitle {
+    background-color: #E3AFB7 !important;
+    //opacity: 0.5;
+  }
+}
+
+.focus {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 9999;
+  outline: 1px solid @color-primary;
+  //outline-offset: -1px;
+  user-select: none;
+  pointer-events: none;
+
+  .itemTitle {
+    pointer-events: auto;
+    width: max-content;
+    color: #FFF;
+    font-weight: 700;
+    position: absolute;
+    bottom: calc(100% - 0px);
+    left: 0px;
+    outline: 1px solid rgba(255, 255, 255, 50%);
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    .titleBar {
+      display: flex;
+    }
+
+    span {
+      padding: 2px 5px 2px 0;
+      background-color: @color-primary;
+      display: inline-block;
+      pointer-events: visible;
+
+      &:first-child {
+        padding-left: 6px;
+        border-radius: 3px 0 0 0;
+      }
+
+      //&:last-child {
+      //  padding-right: 10px !important;
+      //  border-radius: 0 3px 0 0;
+      //}
+
+      &:not(:first-child):not(:last-child) {
+        &:before {
+          content: '>';
+          padding: 0 10px 0 3px;
+        }
+      }
+
+      &:not(:last-child) {
+        cursor: pointer;
+      }
+    }
+
+    .diagrams {
+      width: max-content;
+
+      .event {
+        padding: 0px 5px;
+        margin-left: 2px;
+        width: fit-content;
+        border: 1px solid #bbb;
+        font-style: italic;
+        background-color: #fff4ce;
+        color: #666;
+        font-weight: normal;
+        cursor: pointer;
+        display: inline-flex;
+      }
+    }
+  }
+
+  .shortcuts {
+    //height: 22px;
+    padding: 1px 5px 0 5px !important;
+    border-radius: 0 3px 0 0;
+    margin: 0px 0px 2px 1px;
+    cursor: pointer;
+
+    > * {
+      pointer-events: none;
+      font-size: 10px;
+    }
+  }
+
+  .dot {
+    width: @dotSize;
+    height: @dotSize;
+    border: 1px solid @color-primary;
+    background-color: #FFF;
+    position: absolute;
+    pointer-events: all;
+    border-radius: 50%;
+  }
+
+  .dot0 { //left-top
+    left: @dotShift;
+    top: @dotShift;
+    cursor: nw-resize;
+  }
+
+  .dot1 { //left2-top
+    left: 50%;
+    transform: translateX(-50%);
+    top: @dotShift;
+    cursor: n-resize;
+  }
+
+  .dot2 { //right-top
+    right: @dotShift;
+    top: @dotShift;
+    cursor: ne-resize;
+  }
+
+  .dot3 { //right-top2
+    right: @dotShift;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: e-resize;
+  }
+
+  .dot4 { //right-bottom
+    right: @dotShift;
+    bottom: @dotShift;
+    cursor: se-resize;
+  }
+
+  .dot5 { //left2-bottom
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: @dotShift;
+    cursor: s-resize;
+  }
+
+  .dot6 { //left2-bottom
+    left: @dotShift;
+    bottom: @dotShift;
+    cursor: sw-resize;
+  }
+
+  .dot7 { //left2-bottom
+    left: @dotShift;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: w-resize;
+  }
+}
+
+.geoComMaskMulti {
+  user-select: auto !important;
+  pointer-events: auto !important;
+}

@@ -1,0 +1,149 @@
+@import url('../../theme');
+
+.btn {
+  border: 1px solid #999;
+  border-radius: 3px;
+  font-weight: normal;
+  background: #fff;
+  color: #333;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.workspace {
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+
+  .titleBar {
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #F3F3F3;
+    border-bottom: 1px solid #ddd;
+
+    .comTitle {
+      flex:1;
+      padding: 0 12px;
+      font-weight: 600;
+      text-align: center;
+      //width: 120px;
+      //overflow: hidden;
+      //text-overflow: ellipsis;
+    }
+
+    .inputTitle {
+      height: 100%;
+      line-height: 30px;
+      display: inline-block;
+      padding: 0 12px;
+      //margin-left: -8px;
+      cursor: pointer;
+      background-color: @color-primary;
+      color: #FFF;
+      font-weight: 700 !important;
+    }
+
+    .sper {
+      width: 16px;
+      height: 16px;
+      transform: rotate(45deg) skew(20deg, 20deg);
+      margin-left: -8px;
+      background-color: @color-primary;
+      border-width: 0;
+    }
+
+    i{
+      margin: 0 10px;
+    }
+
+    .btnClose {
+      margin-left: auto;
+      margin-right: 5px;
+      .btn;
+    }
+
+    .menu {
+      position: absolute;
+      left: 35px;
+      top: 28px;
+      border: 1px solid #DDD;
+      background-color: #fff;
+      z-index: 100;
+      min-width: 220px;
+
+      .item {
+        height: 32px;
+        line-height: 32px;
+        padding: 0 12px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #F3F3F3;
+        }
+
+        &:last-child {
+          border-top: 1px solid #EEE;
+        }
+      }
+    }
+  }
+
+  .vars {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    z-index: 100;
+    background: #FFF;
+    padding: 10px;
+    border: 1px solid #ccc;
+
+    .tt {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      color: #555;
+
+      .varAdd {
+        .btn;
+      }
+    }
+
+    .varsList {
+      flex: 1;
+      //display: flex;
+      //overflow: auto;
+
+      .var {
+        height: 25px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 12px;
+        font-weight: 700;
+        border-radius: 30px;
+        margin: 3px;
+        background-color: @color-primary;
+        color: #fff;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+
+  .main {
+    flex: 1;
+    width: 100%;
+  }
+}

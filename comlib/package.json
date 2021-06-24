@@ -1,0 +1,25 @@
+{
+  "name": "@mybricks/comlib",
+  "version": "0.0.5",
+  "description": "MyBricks核心组件库",
+  "main": "./dist/index.js",
+  "author": "CheMingjun",
+  "license": "ISC",
+  "dependencies": {
+    "@hb/rxui": "0.0.54",
+    "react": "^16.13.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --config build/webpack.config.js -p"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.1",
+    "@types/node": "^12.7.0",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
+    "webpack": "^4.42.0",
+    "webpack-bundle-analyzer": "^3.6.1",
+    "webpack-cli": "^3.3.11"
+  }
+}

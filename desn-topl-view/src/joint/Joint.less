@@ -1,0 +1,91 @@
+@import url('../theme');
+
+.joint {
+  position: absolute;
+  left: 0px;
+
+  z-index: 1;
+  cursor: pointer;
+
+  &:hover {
+    .input, .output {
+      border-color: @color-primary !important;
+      background-color: @color-primary !important;
+    }
+  }
+
+  .input, .output {
+    width: 5px;
+    height: 8px;
+    border: 1px solid #777;
+    background-color: #FFFCDE;
+  }
+
+  .pinValue {
+    display: none;
+    width: 50px;
+    z-index: 1000;
+    position: absolute;
+    top: -2px;
+    font-size: 12px;
+    pointer-events: none;
+
+    p {
+      background-color: @color-primary !important;
+      color: #fff;
+      padding: 0px 5px;
+      display: inline-block;
+      border-radius: 3px;
+    }
+  }
+}
+
+.folded {
+  position: relative !important;
+  margin: 8px auto;
+
+  .input, .output {
+    > p {
+      pointer-events: none;
+      position: absolute;
+      width: 200px;
+      color: #999;
+      font-size: 12px;
+      transform: scale(0.8);
+    }
+  }
+
+  .input {
+    > p {
+      left: -5px;
+      top: -4px;
+    }
+  }
+
+  .output {
+    margin-left: 4px;
+
+    > p {
+      right: -5px;
+      text-align: right;
+      top: -4px;
+    }
+  }
+
+}
+
+.focus {
+  .input, .output {
+    border-color: @color-primary !important;
+    background-color: @color-primary !important;
+    color: #fff;
+  }
+}
+
+.running {
+  border-color: @color-primary !important;
+
+  .pinValue {
+    display: block !important;
+  }
+}

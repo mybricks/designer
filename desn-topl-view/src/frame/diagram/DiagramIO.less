@@ -1,0 +1,62 @@
+﻿@import "./DiagramCommon";
+
+.diagramIO {
+  overflow: visible;
+
+  .pinAdder {
+    position: relative;
+
+    border: 1px dashed #aaa;
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    margin: 6px 0px;
+    cursor: pointer;
+    color: #333;
+
+    width: 25px;
+
+    p {
+      font-size: 16px;
+      height: 22px;
+      line-height: 18px;
+    }
+  }
+
+  .inputs, .outputs {
+    position: absolute;
+    top: 30px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
+
+  .inputs {
+    right: calc(~"100% - 15px");
+    align-items: flex-end;
+
+    .pinAdder {
+      background: #EEE;
+    }
+  }
+
+  .outputs {
+    left: calc(~"100% - 15px");
+    align-items: flex-start;
+
+    .pinAdder {
+
+    }
+  }
+}
+
+.focus {
+  //outline: 2px solid #DDD;
+  //outline-offset: -1px;
+  .diagramTitle {
+    color: #777;
+    //font-weight: 700;
+  }
+}

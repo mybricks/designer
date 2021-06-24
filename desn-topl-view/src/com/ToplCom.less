@@ -1,0 +1,165 @@
+@import url('../theme');
+
+.inputPins, .outputPins {
+  position: absolute;
+  top: 0px;
+}
+
+.inputPins {
+  left: -9px;
+
+  .title {
+    color: red;
+  }
+}
+
+.outputPins {
+  right: -8px;
+}
+
+.moving {
+  z-index: 1000 !important;
+  //opacity: 0.3;
+}
+
+.focus {
+  border-color: @color-primary !important;
+  outline: 1px solid @color-primary;
+  outline-offset: -2px;
+  //box-shadow: @box-shadow-hover;
+  .com-title {
+    //color: @color-primary0 !important;
+  }
+
+  //.inputPins {
+  //  > div {
+  //    background-color: #fff;
+  //    border-color: @color-primary !important;
+  //
+  //    a {
+  //      visibility: hidden;
+  //    }
+  //  }
+  //}
+
+  .outputPins {
+    > div {
+      border-color: @color-primary !important;
+      background-color: #DDD;
+
+      a {
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+.mock {
+  border-color: #E02020 !important;
+  border-style: dashed !important;
+  //outline-offset: -2px;
+
+  //box-shadow: inset 0px 1px 10px 0px #FBCDCD;
+
+  &:before {
+    content: "Mock";
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    z-index: 1;
+    width: max-content;
+    height: 20px;
+    line-height: 20px;
+    padding: 0px 8px;
+    overflow: hidden;
+    position: absolute;
+    left: -4px;
+    bottom: calc(100% - 0px);
+    background: #E02020;
+    border-radius: 10px;
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+}
+
+.labelTodo {
+  //outline: 1px dashed #9ACADD;
+  //outline-offset: -2px;
+
+  box-shadow: inset 0px 1px 10px 0px #9ACADD;
+
+  &:before {
+    content: "Todo";
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    z-index: 1;
+    width: max-content;
+    height: 20px;
+    line-height: 20px;
+    padding: 0px 8px;
+    overflow: hidden;
+    position: absolute;
+    left: -4px;
+    bottom: calc(100% - 0px);
+    background: #03B6FC;
+    border-radius: 10px;
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+}
+
+.warn {
+  border: 1px dashed @color-warning;
+
+  .info {
+    z-index: 100;
+    pointer-events: visible;
+    height: 22px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: max-content;
+    bottom: 100%;
+    left: 0;
+    border: 1px solid #AAA;
+    font-style: italic;
+    background-color: @color-warning;
+
+    > ul {
+      padding: 2px;
+
+      li {
+        margin: 0px 5px;
+      }
+    }
+
+    >p {
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0px 5px;
+      font-weight: 500;
+    }
+  }
+}
+
+.error {
+  border: 1px dashed @color-error;
+
+  .info {
+    position: absolute;
+    width: max-content;
+    background-color: #ff0000;
+    color: #FFF;
+    padding: 0px 5px;
+    top: 0px;
+    left: 0;
+    font-style: italic;
+    font-weight: 500;
+    z-index: 1000;
+  }
+}

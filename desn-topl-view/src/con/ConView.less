@@ -1,0 +1,53 @@
+@import url('../theme');
+
+.conView {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+  .arrow {
+    fill: #777;
+  }
+
+  .running {
+    fill: @color-primary !important;
+  }
+
+  .error {
+    fill: @color-error !important;
+  }
+
+  polyline {
+    //stroke-linecap: round;
+    shape-rendering: crispEdges;
+    stroke-linejoin: miter;
+    fill: none;
+    cursor: pointer;
+  }
+}
+
+.focusCom {
+  //circle{
+  //  fill-opacity: 0;
+  //}
+  //polyline{
+  //  pointer-events: none;
+  //  stroke-opacity: 0.2;
+  //  stroke-dasharray: 5;
+  //}
+
+  //marker{
+  //  pointer-events: none;
+  //  fill-opacity: 0.2;
+  //}
+}
+
+.normal {
+  polyline {
+    pointer-events: visibleStroke;
+  }
+}

@@ -1,0 +1,75 @@
+.editor {
+  background-color: #FFF;
+
+  .btns {
+    padding: 5px 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .selected {
+      flex: 1;
+      //border: 1px solid #EEE;
+      cursor: pointer;
+      font-style: italic;
+      color: #AAA;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        display: inline-block;
+      }
+
+      span:first-child {
+        width: 40px;
+      }
+
+      span:last-child {
+        flex: 1;
+        overflow: hidden;
+        color: #333;
+        font-style: normal;
+        padding-left: 2px;
+        word-wrap: break-word;
+        line-height: 14px;
+      }
+    }
+
+    .disable {
+      color: #AAA;
+      pointer-events: none;
+    }
+
+    .test {
+      width: fit-content;
+      padding: 3px 5px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      cursor: pointer;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+
+      span {
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+        margin-right: 5px;
+      }
+
+      .normal {
+        background-color: #AAA;
+      }
+
+      .passed {
+        background-color: green;
+      }
+
+      .failed {
+        background-color: red;
+      }
+    }
+  }
+}

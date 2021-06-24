@@ -1,0 +1,79 @@
+﻿@import '../theme';
+
+.slotContent {
+  position: inherit;
+  display: inherit;
+  flex: inherit;
+  width: inherit;
+  height: inherit;
+  min-height: inherit;
+  //border: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+}
+
+.slotDebug {
+  .slotContent;
+}
+
+.slot {
+  width: 100%;
+  height: 100% !important;
+  pointer-events: auto !important;
+  position: relative !important;
+
+  //&:hover {
+  //  .title {
+  //    display: block;
+  //  }
+  //}
+
+  > .geo-item > div {
+    pointer-events: auto !important;
+    //position: inherit !important;
+  }
+}
+
+.lyFlexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.lyFlexRow {
+  display: flex;
+  flex-direction: row;
+  //flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.justifyContentFlexStart {
+  justify-content: flex-start;
+}
+
+.justifyContentFlexCenter {
+  justify-content: center;
+}
+
+.justifyContentFlexFlexEnd {
+  justify-content: flex-end;
+}
+
+.justifyContentFlexSpaceAround {
+  justify-content: space-around;
+}
+
+.justifyContentFlexSpaceBetween {
+  justify-content: space-between;
+}
+
+.alignItemsFlexStart {
+  align-items: flex-start;
+}
+
+.alignItemsFlexCenter {
+  align-items: center;
+}
+
+.alignItemsFlexFlexEnd {
+  align-items: flex-end;
+}

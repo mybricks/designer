@@ -1,0 +1,28 @@
+﻿.for {
+  width: 100%;
+}
+
+.forScrollY {
+  //width:500px;
+  //height:400px;
+  overflow-y: auto;
+
+  > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.forScrollX {
+  overflow-x: auto;
+
+  > div {
+    height: 100%;
+
+    > div {
+      position: relative;
+      display: inline-block;
+    }
+  }
+}

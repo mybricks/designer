@@ -1,0 +1,61 @@
+{
+  "title": "调试器",
+  "namespace": "xgraph.coms.debugger",
+  "author": "CheMingjun",
+  "author_name": "车明君",
+  "version": "1.0.0",
+  "description": "调试器",
+  "runtime": "./Debugger.tsx",
+  "inputs": [
+    {
+      "id": "val",
+      "title": "显示数据",
+      "schema": {
+        "request": [
+          {
+            "type": "follow"
+          }
+        ],
+        "response": [
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "id": "randomNum",
+      "title": "输出随机数字",
+      "schema": {
+        "request": [
+          {
+            "type": "number"
+          }
+        ],
+        "response": [
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    {
+      "id": "randomNumAndRtn",
+      "title": "输出随机数字并返回",
+      "schema": {
+        "request": [
+          {
+            "type": "number"
+          }
+        ],
+        "response": [
+          {
+            "type": "follow"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+﻿@import url('../../theme');
+
+.pin {
+  position: relative;
+
+  border: 1px solid #aaa;
+  background-color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center !important;
+  margin: 6px 0px;
+  cursor: pointer;
+  color: #333;
+
+  &:hover {
+    border-color: @color-primary !important;
+    background-color: @color-primary !important;
+    color: #FFF;
+  }
+
+  .pinTitle {
+    width: max-content;
+    font-size: 12px;
+    //pointer-events: none;
+    //transition: 0.2s;
+
+    p {
+      margin: 0;
+      display: inline-flex;
+
+      .title {
+        padding: 3px 5px;
+        width: max-content;
+      }
+
+      .help {
+        background-color: #FFFDE3;
+        color: #333;
+        padding: 3px 5px;
+        font-style: italic;
+      }
+    }
+  }
+
+  .pinValue {
+    display: none;
+    width: 100px;
+    max-height: 54px;
+    //font-weight: 700;
+    z-index: 999;
+    position: absolute;
+    top: -2px;
+    font-size: 10px;
+    //line-height:11px;
+    padding: 2px;
+    //pointer-events: none;
+    overflow: hidden;
+    word-break: break-all;
+
+    p {
+      border: 1px solid #fff;
+      background-color: @color-primary !important;
+      color: #fff;
+      padding: 3px;
+      display: inline-block;
+      border-radius: 3px;
+      transform: none;
+      word-break: normal;
+    }
+  }
+}
+
+.connected {
+}
+
+.pinHover {
+  visibility: visible;
+  border-color: #777;
+  //border-right:1px solid #FFF !important;
+}
+
+.inputPin {
+  left: 0px;
+  background-color: #EEE;
+}
+
+.inputPinHover {
+
+}
+
+.outputPin {
+  background-color: #fff;
+  right: -1px;
+}
+
+.outputPinHover {
+  background-color: #DDD;
+}
+
+.comPinEmpty {
+  //visibility: hidden;
+  .pin-line {
+    border-top: none !important;
+
+    p {
+      color: #888 !important;
+    }
+  }
+}
+
+.pinHasDebugdata {
+  border-color: #CD9DF8 !important;
+  background-color: #E4CEF8 !important;
+
+  .pinLine {
+    visibility: hidden;
+  }
+}
+
+.pinDisabled {
+  .pinLine {
+    //border-top-style: dashed !important;
+    opacity: .3;
+  }
+}
+
+.pinFocus {
+  border-color: @color-primary !important;
+  background-color: @color-primary !important;
+  color: #fff;
+}
+
+.pinDebug {
+  //.pin-title {
+  //  display: none !important;
+  //}
+  .pinValue {
+    display: block !important;
+  }
+}
+
+.pinRunning {
+  //border-color: @color-primary !important;
+  border-color: @color-primary !important;
+  background-color: @color-primary !important;
+  background-color: #fff;
+
+  .pinLine {
+    visibility: hidden;
+  }
+
+  .pinValue {
+    display: block !important;
+  }
+}
+
+.hint {
+  //border: 1px dashed @color-primary !important;
+  //background-color: @color-primary !important;
+
+  .pinLine {
+    .hintShow {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      animation: blinking 2s infinite;
+      position: absolute;
+    }
+  }
+
+  //.pinTitle {
+  //  visibility: visible !important;
+  //}
+}
+
+@keyframes blinking {
+  0% {
+    background: @color-primary;
+  }
+  //70% {
+  //  background: @color-primary;
+  //}
+  100% {
+    background: transparent;
+    transform: scale(3);
+  }
+}

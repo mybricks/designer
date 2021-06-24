@@ -1,0 +1,19 @@
+{
+  "title": "模块",
+  "namespace": "xgraph.coms.module",
+  "author": "CheMingjun",
+  "author_name": "车明君",
+  "version": "1.0.0",
+  "description": "子模块",
+  "icon": "./icon.png",
+  "data": "./data.json",
+  "runtime": "./runtime.ts",
+  "editors": "./editors.ts",
+  "slots": [
+    {
+      "id": "default",
+      "title": "Default slot",
+      "type": "scope"
+    }
+  ]
+}

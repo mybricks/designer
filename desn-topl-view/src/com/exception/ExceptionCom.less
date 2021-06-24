@@ -1,0 +1,67 @@
+@import url('../../theme');
+
+.com {
+  width: 70px;
+  min-height: 40px;
+  border: 1px dashed @color-error;
+  border-radius: 3px;
+  background-color: #fff;
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+
+  user-select: none;
+  z-index: 1000;
+
+  //padding: 0px 2px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .title {
+    width: 120%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 13px;
+    transform: scale(0.80) translateY(-10%);
+    word-break: break-all;
+    padding: 2px 3px 0px 3px;
+  }
+
+  .inputPins, .outputPins {
+    position: absolute;
+    top: 0px;
+  }
+
+  .inputPins {
+    left: -8px;
+  }
+
+  .outputPins {
+    right: -7px;
+  }
+}
+
+.moving {
+  z-index: 1000 !important;
+}
+
+.focus {
+  border-color: @color-primary;
+  //box-shadow: @box-shadow-hover;
+  .com-title {
+    //color: @color-primary0 !important;
+  }
+}
+
+.error {
+  font-size: 12px;
+  color: @color-error;
+  //overflow: hidden;
+}
+
+.warn {
+  font-size: 12px;
+  color: @color-warning;
+  //overflow: hidden;
+}

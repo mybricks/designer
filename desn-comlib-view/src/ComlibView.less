@@ -1,0 +1,182 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * MyBricks team @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+
+@import "theme";
+
+.mask {
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+  //opacity: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+
+  &.hide {
+    width: 0;
+  }
+
+  @panelWidth: 315px;
+
+  .panel {
+    position: relative;
+    right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 1px 4px 14px -2px #999;
+    border-radius: 3px;
+    transition: right linear .1s;
+
+    &.hide {
+      right: -@panelWidth;
+      box-shadow: none;
+    }
+
+    .toolbarLayout {
+      display: flex;
+      flex-direction: column;
+      width: @panelWidth;
+      height: 100%;
+
+      .libSelection {
+        padding: 12px;
+        padding-bottom: 0;
+        font-size: 10px;
+
+        .addComBtn {
+          margin-left: 10px;
+          padding: 0;
+        }
+
+        > div {
+          color: #666;
+          font-size: 12px;
+        }
+      }
+
+      .catalogSelection {
+        padding: 6px 12px 10px;
+        font-size: 10px;
+
+        > div {
+          color: #666;
+          font-size: 12px;
+        }
+      }
+
+      .comsSelection {
+        display: flex;
+        justify-content: center;
+        border-top: #eee 1px solid;
+        height: 100%;
+        padding: 11px 0;
+        overflow: auto;
+
+        > div {
+          position: relative;
+          left: 2px;
+          width: 290px;
+        }
+      }
+
+      .com {
+        position: relative;
+        display: inline-block;
+        width: 95px;
+        height: 90px;
+        padding: 0;
+        margin-top: -1px;
+        margin-left: -1px;
+        border: 1px solid #f3f3f3;
+        border-radius: 0;
+        z-index: 0;
+        vertical-align: top;
+        cursor: pointer;
+
+        .title {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          padding: 0;
+          color: #949494;
+          font-size: 12px;
+          font-weight: normal;
+
+          .comIcon {
+            width: 32px;
+            height: 32px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            margin: 0;
+            flex-shrink: 0;
+          }
+
+          .comIconFallback {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+          }
+
+          .comText {
+            margin-top: 6px;
+            width: 100%;
+            text-align: center;
+          }
+        }
+
+        &:hover {
+          border-color: @color-primary;
+          z-index: 1;
+        }
+      }
+
+      .catalog {
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+
+        .cataTitle {
+          display: flex;
+          align-items: center;
+          margin-bottom: 4px;
+          color: #666;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .cataTitleText {
+          margin-left: 6px;
+        }
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 1px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+}

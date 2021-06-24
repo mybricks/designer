@@ -1,0 +1,32 @@
+@import url('../theme');
+
+.placeholder {
+  z-index: 1000;
+  position: absolute;
+  //left: 0px;
+  //width: calc(100% + 8px);
+  //height: 10px;
+  background-color: transparent;
+}
+
+.placeholderH {
+  transform: translateX(-6px) translateY(-5px);
+  border-left: 2px solid @color-primary;
+  border-right: 2px solid @color-primary;
+
+  > div {
+    border-top: 3px dashed @color-primary;
+    margin-top: 3px;
+  }
+}
+
+.placeholderV {
+  transform: translateX(-4px) translateY(-5px);
+  border-top: 2px solid @color-primary;
+  border-bottom: 2px solid @color-primary;
+  > div {
+    height: 100%;
+    border-left: 3px dashed @color-primary;
+    margin-left: 3px;
+  }
+}

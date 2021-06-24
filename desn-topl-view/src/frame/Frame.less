@@ -1,0 +1,106 @@
+﻿@import url('../theme');
+
+.frame {
+  position: relative;
+  min-height: 50px;
+  //overflow: hidden;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+    //margin-bottom: -2px;
+  }
+
+  &:hover {
+    > .resizer {
+      display: inherit;
+    }
+  }
+
+  //margin:2px;
+  //overflow:hidden;
+  //
+  .body {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0px;
+    z-index: 1000;
+    background: #fff;
+    border: 1px solid #DDD;
+    border-top: 0px;
+    border-radius: 0px 0px 5px 5px;
+    padding: 0px 2px;
+    height: 18px;
+
+    p {
+      transform: scale(0.84) translateY(-5%);
+      font-style: italic;
+      color: #999;
+    }
+  }
+
+  .inputPins, .outputPins {
+    position: absolute;
+    top: 8px;
+    z-index: 100;
+  }
+
+  .inputPins {
+    left: 5px;
+  }
+
+  .outputPins {
+    right: 5px;
+  }
+
+
+  .inputJoints,
+  .outputJoints {
+    position: absolute;
+    top: 12px;
+    z-index: 100;
+    //z-index: 5;
+  }
+
+  .inputJoints {
+    left: 1px;
+  }
+
+  .outputJoints {
+    right: 6px;
+  }
+
+  .resizer {
+    position: absolute;
+    z-index: 1000;
+    width: 7px;
+    height: 7px;
+    right: 5px;
+    bottom: 5px;
+    cursor: nwse-resize;
+    border-right: 2px solid #999;
+    border-bottom: 2px solid #999;
+    display: none;
+  }
+}
+
+.focus {
+  outline-color: @color-primary;
+}
+
+.readonly {
+  .body {
+    background-color: #F9F9F9;
+  }
+}
+
+.frameHover {
+  box-shadow: inset 0px 7px 30px 10px #EEE, inset 0px -30px 28px -19px #EEE;
+}

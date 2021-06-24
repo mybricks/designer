@@ -1,0 +1,38 @@
+﻿@import url('../../theme');
+
+.diagram {
+
+}
+
+.diagramView {
+  display: inline-block;
+  margin:3000px;
+  position: relative;
+  z-index: 0;
+  min-width: 800px;
+
+  .empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    color: #AAA;
+    font-style: italic;
+    background-color: #fff;
+  }
+}
+
+.hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23),
+  inset 0px 7px 50px 2px #ddd, inset 0px -12px 19px -19px #ddd;
+}
+
+.debug {
+  position: relative;
+}
+
+.selectZone {
+  position: absolute;
+  border: 1px dashed #ccc;
+  background-color: rgba(0, 0, 0, 0.05);
+}

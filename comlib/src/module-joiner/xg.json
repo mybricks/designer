@@ -1,0 +1,28 @@
+{
+  "title": "ModuleJoiner",
+  "namespace": "xgraph.coms.moduleJoiner",
+  "author": "CheMingjun",
+  "author_name": "车明君",
+  "version": "1.0.0",
+  "description": "模块连接器",
+  "runtime": "./ModuleJoiner.ts",
+  "rtType": "js",
+  "inputs": [
+    {
+      "id": "in",
+      "title": "当前模块输出",
+      "schema": {
+        "request": [
+          {
+            "type": "follow"
+          }
+        ],
+        "response": [
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  ]
+}

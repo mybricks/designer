@@ -1,0 +1,157 @@
+/**
+ * Topological view
+ *
+ *
+ * @author: CheMingjun(chemingjun@126.com)
+ */
+@import url('../../theme');
+
+.com {
+  position: absolute;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  width: 300px;
+  //height: 200px;
+  //min-height: 120px;
+  min-width: 200px;
+  border: 1px solid #999;
+  border-radius: 3px;
+
+  outline: 3px solid #ddd;
+  outline-offset: -4px;
+
+  user-select: none;
+  z-index: 1;
+
+  &:after {
+    content: "";
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+  }
+
+  .title {
+    position: absolute;
+    left: 50%;
+    max-width: 100%;
+    width: fit-content;
+    bottom: calc(100%);
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #AAA;
+    //border-bottom: 0px;
+    border-radius: 3px 3px 0px 0px;
+    padding: 3px 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+    .icon {
+      width: 16px;
+      display: flex;
+
+      img {
+        max-width: 14px;
+      }
+    }
+
+    > p {
+      //overflow: hidden;
+      font-size: 10px !important;
+      line-height: 11px;
+      word-break: break-all;
+      transform: scale(0.84) translateY(-5%);
+    }
+
+    .btns {
+      cursor: pointer;
+      color: #999;
+    }
+  }
+
+  .frames {
+    overflow: hidden;
+  }
+
+  .inputPins {
+    position: absolute;
+    left: -8px;
+  }
+
+  .outputPins {
+    position: absolute;
+    right: -8px;
+  }
+}
+
+.focus {
+  border-color: @color-primary !important;
+  outline: 1px solid @color-primary;
+  outline-offset: -2px;
+  //outline: 1px solid @color-primary;
+  //outline-offset: -2px;
+  //box-shadow: @box-shadow-hover;
+
+  .title {
+    border-color: @color-primary !important;
+  }
+
+  //.inputPins {
+  //  > div {
+  //    background-color: #fff;
+  //    border-color: @color-primary !important;
+  //
+  //    a {
+  //      visibility: hidden;
+  //    }
+  //  }
+  //}
+
+  .outputPins {
+    > div {
+      border-color: @color-primary !important;
+      background-color: #DDD;
+
+      a {
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+//.focus {
+//  border-color: @color-primary;
+//  //box-shadow: @box-shadow-hover;
+//
+//  > .comments {
+//    border-color: @color-primary !important;
+//  }
+//
+//  > .comFrame {
+//    outline-color: @color-secondary;
+//  }
+//
+//  > .comPinsInput, > .comPinsOutput {
+//    .comPinInput, .comPinOutput {
+//      visibility: visible;
+//      border-color: @color-primary !important;
+//
+//      .pinLine {
+//        display: none;
+//      }
+//    }
+//  }
+//}
+
+.comDiscard {
+  font-size: 12px;
+  color: @color-error;
+  overflow: hidden;
+}

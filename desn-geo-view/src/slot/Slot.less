@@ -1,0 +1,117 @@
+﻿@import '../theme';
+@import "./SlotCommon";
+.slotContent {
+  //position: inherit;
+  //display: inherit;
+  //flex: inherit;
+  //width: inherit;
+  //height: inherit;
+  //min-height: inherit;
+  //border: inherit;
+  //align-items: inherit;
+  //justify-content: inherit;
+}
+
+.slotDebug {
+  .slotContent;
+}
+
+.slot {
+  width: 100%;
+  height: 100% !important;
+  pointer-events: auto !important;
+  position: relative !important;
+
+  //&:hover {
+  //  .title {
+  //    display: block;
+  //  }
+  //}
+
+  > .geo-item > div {
+    pointer-events: auto !important;
+    //position: inherit !important;
+  }
+
+  .title {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0px;
+    z-index: 1000;
+    background: #fff;
+    border: 1px solid #DDD;
+    border-top: 0px;
+    border-radius: 0px 0px 5px 5px;
+    padding: 0px 2px;
+    height: 18px;
+
+    p {
+      transform: scale(0.84) translateY(-5%);
+      font-style: italic;
+      color: #999;
+    }
+  }
+
+  .placeholder {
+    height: 10px;
+    background-color: @color-primary;
+  }
+}
+
+.focus {
+  //background-color: palevioletred !important;
+  box-shadow: inset 0px 7px 50px 2px #ddd, inset 0px -12px 19px -19px #ddd;
+}
+
+.desn {
+  outline: 1px dashed #DDD;
+  outline-offset: -1px;
+  //padding:1px;
+  //margin: 1px;
+  //background: rgba(0, 0, 0, 0.06);
+  background: rgba(253, 247, 166, 0.1);
+  .slotContent;
+
+  //&:before {
+  //  content: attr(data-title);
+  //  font-style: italic;
+  //  color: #DDD;
+  //  font-size: 12px;
+  //  z-index: 0;
+  //  width: 100%;
+  //  height: 100%;
+  //  display: flex;
+  //  align-items: center;
+  //  justify-content: center;
+  //  overflow: hidden;
+  //  position: absolute;
+  //}
+}
+
+.empty {
+  //display: flex !important;
+  //align-items: center !important;
+  //justify-content: center !important;
+  //text-align: center;
+  //background: transparent;
+
+  &:before {
+    content: attr(data-title);
+    font-style: italic;
+    color: #DDD;
+    font-size: 12px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
+.hover {
+  box-shadow: inset 0px 7px 50px 2px #ddd, inset 0px -12px 19px -19px #ddd;
+}

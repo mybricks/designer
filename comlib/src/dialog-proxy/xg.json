@@ -1,0 +1,23 @@
+{
+  "title": "按钮组",
+  "namespace": "xgraph.coms.dialogProxy",
+  "author": "CheMingjun",
+  "author_name": "车明君",
+  "version": "1.0.0",
+  "description": "对话框代理",
+  "runtime": "./runtime.tsx",
+  "outputs": [
+    {
+      "id": "commit",
+      "title": "确定"
+    },
+    {
+      "id": "cancel",
+      "title": "取消"
+    },
+    {
+      "id": "apply",
+      "title": "应用"
+    }
+  ]
+}

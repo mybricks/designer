@@ -1,0 +1,255 @@
+﻿@import url('../../theme');
+
+@input-color: #777;
+@input-bgcolor: #FFF;
+
+@output-color: #AAA;
+@output-bgcolor: #AAA;
+
+.pin {
+  cursor: pointer !important;
+  position: relative;
+  background: #eff3ee;
+  border: 1px solid #94B090;
+  width: 17px;
+  height: 17px;
+  border-radius: 100%;
+  //margin-bottom: 28px;
+
+  &:hover {
+    border-color: @color-primary !important;
+    background-color: @color-primary !important;
+
+    .pinTitle {
+      visibility: visible !important;
+      opacity: initial;
+      z-index: 100;
+    }
+  }
+
+  .pinTitle {
+    width: max-content;
+    position: absolute;
+    top: -4px;
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    //opacity: 0.15;
+    //visibility: hidden;
+
+    //pointer-events: none;
+    //transition: 0.2s;
+
+    p {
+      margin: 0;
+      display: inline-flex;
+      border-radius: 3px;
+      height: 22px;
+      line-height: 22px;
+      //height: 16px;
+      //line-height: 16px;
+      overflow: hidden;
+      outline: 1px solid #fff;
+
+      .title {
+        width: max-content;
+        transform: scale(0.9);
+      }
+
+      .help {
+        background-color: #FFFDE3;
+        border: 1px solid #616C81;
+        color: #333;
+        padding: 0px 5px;
+        font-style: italic;
+      }
+    }
+  }
+
+  .fixTitle {
+    color: #AAA;
+    width: max-content;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    font-size: 12px;
+    transform: scale(0.8);
+  }
+
+  .pinValue {
+    display: none;
+    width: 150px;
+    max-height: 54px;
+    //font-weight: 700;
+    z-index: 999;
+    position: absolute;
+    top: 8px;
+    font-size: 10px;
+    //line-height:11px;
+    padding: 2px;
+    //pointer-events: none;
+    overflow: hidden;
+    word-break: break-all;
+
+    p {
+      border: 1px solid #fff;
+      background-color: @color-primary !important;
+      color: #fff;
+      padding: 3px;
+      display: inline-block;
+      border-radius: 3px;
+      transform: none;
+      word-break: normal;
+    }
+  }
+}
+
+.connected {
+  //background: #9EB289;
+  background: #cddec7;
+  border: 1px solid #94B090;
+
+  .pinLine {
+    //visibility: hidden;
+    p {
+      opacity: 1 !important;
+    }
+  }
+
+  .pinTitle {
+    top: -11px;
+    visibility: visible !important;
+    opacity: initial !important;
+
+    p {
+      height: 16px;
+      line-height: 16px;
+      outline: none;
+
+      .title {
+        color: #999;
+        font-weight: normal;
+        background-color: transparent;
+        padding: 0px 0px;
+      }
+    }
+  }
+
+  .pinLine {
+    //visibility: hidden;
+  }
+}
+
+.pinHover {
+  visibility: visible;
+  border-color: #616C81;
+  background-color: #fff;
+  //border-right:1px solid #FFF !important;
+  .pin-line {
+    display: none;
+  }
+
+  p {
+    display: none
+  }
+}
+
+.comPinEmpty {
+  //visibility: hidden;
+  .pin-line {
+    border-top: none !important;
+
+    p {
+      color: #888 !important;
+    }
+  }
+}
+
+.pinHasDebugdata {
+  border-color: #CD9DF8 !important;
+  background-color: #E4CEF8 !important;
+
+  .pinLine {
+    visibility: hidden;
+  }
+}
+
+.pinDisabled {
+  .pinLine {
+    //border-top-style: dashed !important;
+    opacity: .3;
+  }
+}
+
+.pinFocus {
+  border-color: @color-primary !important;
+  background-color: @color-primary !important;
+  z-index: 100;
+
+  .pinLine {
+    visibility: hidden;
+  }
+
+  .pinTitle {
+    //top: -15px;
+    visibility: visible !important;
+    opacity: initial;
+    background-color: #616C81;
+    border-radius: 3px;
+
+    .title {
+      color: #fff;
+      font-weight: 500;
+      background-color: #616C81;
+      padding: 0px 5px;
+    }
+
+    //> p {
+    //  height: 22px;
+    //  line-height: 22px;
+    //}
+  }
+}
+
+.pinDebug {
+  //.pin-title {
+  //  display: none !important;
+  //}
+  .pinValue {
+    display: block !important;
+  }
+}
+
+.pinRunning {
+  //border-color: @color-primary !important;
+  border-color: @color-primary !important;
+  background-color: @color-primary !important;
+
+  .pinLine {
+    visibility: hidden;
+  }
+
+  .pinValue {
+    display: block !important;
+  }
+}
+
+.emphasized {
+  background-color: #fff;
+  border-color: @color-primary !important;
+
+  a {
+    visibility: hidden;
+  }
+
+  .pinTitle {
+    visibility: visible !important;
+    opacity: 0.8;
+
+    > p {
+      height: 16px;
+      line-height: 16px;
+      outline: none;
+    }
+  }
+}

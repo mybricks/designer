@@ -1,0 +1,97 @@
+@import url('../../theme');
+
+.com {
+  width: 120px;
+  min-height: 40px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  background-color: #fff;
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+
+  user-select: none;
+  z-index: 1;
+
+  //padding: 0px 2px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    > .resizer {
+      display: inherit;
+    }
+  }
+
+  .title {
+    position: absolute;
+    max-width: 100%;
+    width: fit-content;
+    left: 50%;
+    bottom: calc(100%);
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #AAA;
+    //border-bottom: 0px;
+    border-radius: 3px 3px 0px 0px;
+    padding: 3px 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+    .icon {
+      width: 16px;
+      display: flex;
+
+      img {
+        max-width: 14px;
+      }
+    }
+
+    > p {
+      //overflow: hidden;
+      font-size: 10px !important;
+      line-height: 11px;
+      word-break: break-all;
+      transform: scale(0.84) translateY(-5%);
+    }
+
+    .btns {
+      cursor: pointer;
+      color: #999;
+    }
+  }
+
+  .inputPins, .outputPins {
+    position: absolute;
+    top: 0px;
+  }
+
+  .inputPins {
+    left: -9px;
+
+    .title {
+      color: red;
+    }
+  }
+
+  .outputPins {
+    right: -8px;
+  }
+
+  .resizer {
+    position: absolute;
+    z-index: 1000;
+    width: 7px;
+    height: 7px;
+    right: 5px;
+    bottom: 5px;
+    cursor: nwse-resize;
+    border-right: 2px solid #999;
+    border-bottom: 2px solid #999;
+    display: none;
+  }
+}

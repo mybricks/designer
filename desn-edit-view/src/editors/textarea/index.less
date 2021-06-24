@@ -1,0 +1,40 @@
+@import "../../theme";
+
+.editor-text {
+  :global {
+    .ant-input {
+      overflow-y: auto !important;
+    }
+
+    .ant-input:hover {
+      border-color: @color-primary;
+    }
+
+    .ant-input-focused, .ant-input:focus {
+      border-color: @color-primary;
+      -webkit-box-shadow: 0 0 0 2px #fa640033;
+      box-shadow: 0 0 0 2px #fa640033;
+    }
+
+    .ant-input[disabled] {
+      color: rgba(0, 0, 0, .85);
+      background-color: #fff;
+      cursor: default;
+    }
+
+    .ant-input[disabled]:hover {
+      border-color: #d9d9d9;
+    }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    border: none;
+    height: 25px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px 0 #666666;
+  }
+}

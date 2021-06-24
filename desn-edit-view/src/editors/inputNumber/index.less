@@ -1,0 +1,62 @@
+@import "../../theme";
+.edit-inputnumber {
+  // style={{display: 'inline-block', maxWidth: '100%'}}
+  display: inline-block;
+  max-width: 100%;
+  margin-right: 4px;
+  &__all {
+    // width: 100%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    // display: inline-block;
+    // justify-content: space-between;
+    &-title {
+      height: 20px;
+      line-height: 22px;
+      margin: 0px 5px 0px 10px;
+      color: #888;
+      margin-top: 5px;
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      // width: 36px;
+      // overflow: hidden;
+      // text-align: right;
+    }
+    :global {
+      .ant-input-number {
+        // width: 100%!important;
+        // width: 60px!important;
+      }
+      .ant-input-number-sm {
+        // width: 100%!important;
+        // width: 60px!important;
+      }
+      .ant-input-number-handler-up:hover {
+        height: 50%!important;
+      }
+      .ant-input-number-handler-down:hover {
+        height: 50%!important;
+      }
+      .ant-input-number-handler {
+        min-height: 50%;
+      }
+      .ant-input-number-handler-up-inner {
+        margin-top: -7px;
+      }
+      .ant-input-number:hover {
+        border-color: @color-primary;
+      }
+      .ant-input-number-focused, .ant-input-number:focus {
+        border-color: @color-primary;
+        -webkit-box-shadow: 0 0 0 2px #fa640033;
+        box-shadow: 0 0 0 2px #fa640033;
+      }
+      .ant-input-number-handler-wrap {
+        z-index: 2;
+      }
+    }
+  }
+}

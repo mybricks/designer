@@ -1,0 +1,361 @@
+﻿@import url('../../theme');
+
+@input-color:#777;
+@input-bgcolor:#FFF;
+
+@output-color:#AAA;
+@output-bgcolor:#AAA;
+
+.pin {
+  position: relative;
+  background: transparent;
+  width: 9px;
+  height: 9px;
+  border: 1px solid transparent;
+  margin: 8px 0px;
+
+  &:hover {
+    border-color: @color-primary !important;
+    background-color: @color-primary !important;
+
+    > .pinLine {
+      opacity: 0;
+    }
+
+    .pinTitle {
+      visibility: visible !important;
+      opacity: initial;
+      z-index: 100;
+    }
+  }
+
+  .joiners {
+    pointer-events: none;
+  }
+
+  .pinLine {
+    position: absolute;
+
+    p {
+      opacity: 0.3;
+      margin: 0;
+      padding: 0;
+      //position: absolute;
+      //left: 0px;
+      //transform: translateY(-45%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+  }
+
+  .pinTitle {
+    width: max-content;
+    position: absolute;
+    top: -4px;
+    font-size: 12px;
+    //opacity: 0.15;
+    visibility: hidden;
+
+    //pointer-events: none;
+    //transition: 0.2s;
+
+    p {
+      margin: 0;
+      display: inline-flex;
+      border-radius: 3px;
+      height: 22px;
+      line-height: 22px;
+      //height: 16px;
+      //line-height: 16px;
+      overflow: hidden;
+      outline: 1px solid #fff;
+
+      .title {
+        color: #fff;
+        font-weight: 500;
+        background-color: #616C81;
+        padding: 0px 5px;
+        width: max-content;
+      }
+
+      .help {
+        background-color: #FFFDE3;
+        border: 1px solid #616C81;
+        color: #333;
+        padding: 0px 5px;
+        font-style: italic;
+      }
+    }
+  }
+
+  .fixTitle {
+    color: #AAA;
+    width: max-content;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    font-size: 12px;
+    transform: scale(0.8);
+  }
+
+  .pinValue {
+    display: none;
+    width: 150px;
+    max-height: 54px;
+    //font-weight: 700;
+    z-index: 999;
+    position: absolute;
+    top: 2px;
+    font-size: 10px;
+    //line-height:11px;
+    padding: 2px;
+    //pointer-events: none;
+    overflow: hidden;
+    word-break: break-all;
+
+    p {
+      border: 1px solid #fff;
+      background-color: @color-primary !important;
+      color: #fff;
+      padding: 3px;
+      display: inline-block;
+      border-radius: 3px;
+      transform: none;
+      word-break: normal;
+    }
+  }
+}
+
+.emphasized {
+  background-color: #fff;
+  border-color: @color-primary !important;
+
+  a {
+    visibility: hidden;
+  }
+
+  .pinTitle {
+    visibility: visible !important;
+    opacity: 0.8;
+
+    > p {
+      height: 16px;
+      line-height: 16px;
+      outline: none;
+    }
+  }
+}
+
+.connected {
+  //border-color: #aaa !important;
+  //background-color: transparent !important;
+
+  .pinLine {
+    //visibility: hidden;
+    p {
+      opacity: 1 !important;
+    }
+  }
+
+  .pinTitle {
+    transform: scale(0.9);
+    top: -12px;
+    visibility: visible !important;
+    opacity: initial !important;
+
+    p {
+      height: 16px;
+      line-height: 16px;
+      outline: none;
+
+      .title {
+        color: #999;
+        font-weight: normal;
+        background-color: transparent;
+        padding: 0px 0px;
+      }
+    }
+  }
+
+  .pinLine {
+    //visibility: hidden;
+  }
+}
+
+.pinExt {
+  .pinLine {
+    p {
+      //background-color: #D7BC70;
+      border: 1px solid #9f7c16 !important;
+      background-color: #EECD71 !important;
+    }
+  }
+}
+
+.pinHover {
+  visibility: visible;
+  border-color: #616C81;
+  background-color: #fff;
+  //border-right:1px solid #FFF !important;
+  .pin-line {
+    display: none;
+  }
+
+  p {
+    display: none
+  }
+}
+
+.inputPin {
+  border-right: 0px !important;
+  left: 0px;
+  //margin-left:-1px;
+
+  .pinLine {
+    right: 2px;
+
+    p {
+      border: 1px solid @input-color;
+      background-color: @input-bgcolor;
+    }
+  }
+}
+
+.inputPinHover {
+
+}
+
+.outputPin {
+  border-left: 0px !important;
+  right: -1px;
+
+  .pinLine {
+    left: 2px;
+    p {
+      //border: 1px solid #7DA87F;
+      background-color: @output-bgcolor;
+    }
+  }
+}
+
+.outputPinHover {
+  background-color: #DDD;
+}
+
+.comPinEmpty {
+  //visibility: hidden;
+  .pin-line {
+    border-top: none !important;
+
+    p {
+      color: #888 !important;
+    }
+  }
+}
+
+.pinHasDebugdata {
+  border-color: #CD9DF8 !important;
+  background-color: #E4CEF8 !important;
+
+  .pinLine {
+    visibility: hidden;
+  }
+}
+
+.pinDisabled {
+  .pinLine {
+    //border-top-style: dashed !important;
+    opacity: .3;
+  }
+}
+
+.pinFocus {
+  border-color: @color-primary !important;
+  background-color: @color-primary !important;
+  z-index: 100;
+
+  .pinLine {
+    visibility: hidden;
+  }
+
+  .pinTitle {
+    visibility: visible !important;
+    opacity: initial;
+
+
+    //> p {
+    //  height: 22px;
+    //  line-height: 22px;
+    //}
+  }
+}
+
+.pinDebug {
+  //.pin-title {
+  //  display: none !important;
+  //}
+  .pinValue {
+    display: block !important;
+  }
+}
+
+.pinRunning {
+  //border-color: @color-primary !important;
+  border-color: @color-primary !important;
+  background-color: @color-primary !important;
+
+  .pinLine {
+    visibility: hidden;
+  }
+
+  .pinValue {
+    display: block !important;
+  }
+}
+
+.hint {
+  //border: 1px dashed @color-primary !important;
+  //background-color: @color-primary !important;
+
+  .pinLine {
+    visibility: visible;
+
+    > p {
+      //background-color: @color-primary !important;
+    }
+
+    .hintShow {
+      pointer-events: none;
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      transform:translateZ(0);
+      //animation: blinking 600ms 2;
+      animation: blinking 1s infinite;
+      //animation-fill-mode:forwards;
+    }
+  }
+
+  .pinTitle {
+    visibility: visible !important;
+
+    > p {
+      opacity: 0.5;
+      height: 16px;
+      line-height: 16px;
+    }
+  }
+}
+
+@keyframes blinking {
+  0% {
+    background: @color-primary;
+  }
+
+  100% {
+    background: rgba(250, 100, 0, 20%);
+    transform: scale(6);
+  }
+}

@@ -1,0 +1,137 @@
+.bg {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  //display: flex;
+
+  .empty {
+    padding: 10px 20px;
+    font-style:italic;
+    color:#AAA;
+  }
+
+  .catelog {
+    position: absolute;
+    background-color: #F7F7F7;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+
+    :global(.ant-select) {
+      font-size: 12px;
+    }
+
+    .scroll {
+      //flex:1;
+      overflow-y: auto;
+    }
+
+    .fixed {
+      border-top: solid 1px #DDD;
+    }
+
+    .group {
+      border-bottom: 1px solid #DDD;
+      //padding: 10px 0 5px 0;
+      display: flex;
+      flex-direction: column;
+
+      .groupContent {
+        width: 100%;
+        //padding:0px 5px;
+      }
+
+      .title {
+        font-weight: 600;
+        padding: 5px 10px 0 10px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #F5F5F5;
+        //border-top: solid 1px #ddd;
+        //border-bottom: solid 1px #ddd;
+        .titlename {
+          word-break: keep-all;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 100%;
+        }
+
+        .action {
+          display: none;
+          cursor: pointer;
+          color: #969698;
+          width: 50px;
+          text-align: right;
+        }
+      }
+
+      .child {
+        //border-top: solid 1px #ddd;
+        //border-bottom: solid 1px #ddd;
+        //margin-top: -1px;
+        overflow: hidden;
+      }
+
+      //&:first-child {
+      //  padding-top: 0px;
+      //}
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .comments {
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+
+      .item {
+        margin: 15px 10px;
+
+        .foldable {
+          display: flex;
+          justify-content: space-between;
+
+          .foldabletitle {
+            word-break: keep-all;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+          }
+
+          .foldableaction {
+            cursor: pointer;
+            color: #969698;
+            width: 50px;
+            text-align: right;
+          }
+        }
+
+        p {
+          padding-bottom: 3px;
+        }
+      }
+
+      .description {
+        margin-left: 5px;
+        opacity: 0.4;
+        font-size: 14px;
+      }
+    }
+
+    .fixedAtBottom {
+      flex: 1;
+      align-items: flex-end;
+    }
+
+    .descriptionTitle {
+      font-size: 12px;
+    }
+  }
+}

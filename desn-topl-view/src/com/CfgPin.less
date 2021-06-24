@@ -1,0 +1,55 @@
+@import url('../theme');
+
+.main {
+  .title {
+    //font-weight: 700;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      i {
+        background-color: @color-primary;
+        border-color: @color-primary;
+      }
+
+      span {
+        color: @color-primary;
+      }
+    }
+
+    i {
+      border: 1px solid #AAA;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+    }
+
+    span {
+      color: #555;
+      //padding: 3px;
+      border-radius: 3px;
+    }
+  }
+}
+
+.input {
+  .item {
+    i {
+      background-color: #FFF;
+    }
+  }
+}
+
+.output {
+  .item {
+    i {
+      background-color: #CCC;
+    }
+  }
+}

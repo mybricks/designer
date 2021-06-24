@@ -1,0 +1,155 @@
+﻿@import url('./theme');
+
+.stageView {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: #cdced1;
+  background-image: url(data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMraHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjRDN0YyREVEMzE2OTExRTI4OTgzRTlDNEE1QzA1NTcyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjRDN0YyREVFMzE2OTExRTI4OTgzRTlDNEE1QzA1NTcyIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NEM3RjJERUIzMTY5MTFFMjg5ODNFOUM0QTVDMDU1NzIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NEM3RjJERUMzMTY5MTFFMjg5ODNFOUM0QTVDMDU1NzIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAB5AH0DAREAAhEBAxEB/8QAaAABAQEBAQAAAAAAAAAAAAAAAQIAAwcBAQEBAAAAAAAAAAAAAAAAAAABAhAAAQMDAwMEAgMBAQAAAAAAAQARITFBAlFxEvBhgaGxwSIyQpHR4VLSEQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEQMRAD8A95FX+FpAPxL66IDJnMxsgkANW2iCocbaIJiJ9EDiA4/pBWI+p/pAgFsoQYECyDYkNlpHugMm49aIM540vruqM5j621GigCexpqgJ0QV+yDW8oNkA/WqAb67hAjH7IBg4hBgC+wQUMTwKCQ89WQBxJYt06DcWxMC3ugcsTSOggwgUFdd0GBgbFBsXaEGnk8UQWchykoBx2qg2TSXHRVED8RIooKx3ogCziQg16oKgYVqR8oJDMUD9WG3zug2XHW/zugMiBdBiYugCYZjRBWLcDBQZg9Dogcnd46KANPKDEGo9+6AHJhNtUFgu8mmqCPs4n1VCCdT/AD3UFP8AUSaoJjiXJqgxZgO2iDZN6oJLG5qgTxYVQYswg07oKBHAxprqgHHL8enQBAq+rqg4Y6j+EDwxmbaKDccPTsgoYY+hQTwxifZAjHCN/lAnDHgIVGYMwF+6gk0EW7oEifPV0EtD90C/sgTkWDaIMMsuICDTy8/KDFxjXVBWOWViEGOWXE0ognLlNDHZA4vysgSci1KIJlxT01QY0FEGYM8O6DQLBAkzS6CXil0GccSZvZAjgwk0Njogfq2LH3QMPWX+UEFuR2rKCgaboJydBbfU+boJyEYn57IMH5f6grIFxsboJYPlN9eyDDi1dVRmxc/YKDBv+rINkPtXp0A5ZBJ1690FBnEGgt/qAhnQJA5FggWHLyUAWeEF2Ox90EZUHVkDjXrVA5PHlBM8smevwgS7UN/hAESXHogzQgcgQX7qhIPGg9f6UEHEtT3QaQRsNUA2XHwg6ABzN0GDOZ1QSTogsEsdj7oIL/WYQbF3CCi54+fdBH2mboKPJjPv2QByyo99CgAcpPbugcnYlroNyyONEGfJqIMTQdkC318fKDOeRi6ABPExqgwd7UQUKVFCgxaJFEE4uwkILh8ZF0AGrCBfE8kBBNv4VGGL45U6Kg2WH1NPTRBji2NkGZgNkEkyK0VBa/8AHdQWMprG6AB+pkVQGVTIQT5FEFUImyAmJCDY1EoKx/EygRlGUoMCLlBsWbKenQGQHHrRBnHHzpuqM4iDTTsoAkWemiA8ILnlVAW8oNkJQS31pUIKAPJANIQYA6WQViMuBKAByms/0gku4r0UGD8TW1+6ByBox6CBEC9VQOWGxUGFKOg08qQyCz+SAYeqDZAv/vdBM8RsgcXKDEEEb6oCQUFUw3I+UAKFBmAAm2vfZBsh36fZAZboMSOyCScWbtogvE48DM7ICHr6KishLt06gkiKXQYg6e2qDB2EW0CChL7aBBJBcR6BUI6gKCv1FK6boJYcTIqgxZhSnfVBsh7oJyAN76IEswlBjxYTZBWOWPAzp7oB8eV6/KDEEy9e6onhkb31UDwLGbd0G4a5W7oKGPexQTwdvt7oEYhx9r99UCcRwElUYgNrOqgk0Faa/wCIEifKCWDP3QLj0QJyDDZAjI8RCAnl5+UE5UO5QAqqLF9lAD4QXjQ7JBBoEDjbq6Cj+AVB/wClAGnhBjXyg369d0AECP12KDGyDft5+UH/2Q==);
+  outline: none;
+  //overflow: auto;
+
+  .loading {
+    font-weight: 700;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #F7F7F7;
+    border-bottom: 1px solid #AAA;
+    height: 30px;
+    overflow: hidden;
+
+    .fullscreen {
+      width: 50px;
+      text-align: center;
+    }
+
+    .tt {
+      display: flex;
+      margin: 0 -10px;
+      padding: 0 10px 0 20px;
+      background-color: #fff;
+      font-size: 12px;
+      cursor: pointer;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+
+      &:nth-last-of-type(1) {
+        //padding-right: 10px;
+        font-weight: 700 !important;
+        background-color: @color-primary;
+        color: #FFF;
+        margin-right: -8px;
+        padding: 0px 10px 0px 20px;
+        margin-left: -8px;
+      }
+
+      &:nth-of-type(1) :not(:nth-last-of-type(1)) {
+        padding: 0 20px 0px 20px !important;
+        //padding-left:10px;
+      }
+
+      //&:nth-of-type(2) {
+      //  background-color: @color-primary;
+      //  color: #FFF;
+      //  font-weight: 700 !important;
+      //}
+    }
+
+    .sper {
+      width: 25px;
+      height: 25px;
+      /* top: 7px; */
+      /* right: -22px; */
+      border-top: 2px solid #E3E3E3;
+      border-right: 2px solid #E3E3E3;
+      background-color: #fff;
+      transform: rotate(45deg) skew(20deg, 20deg);
+      //margin-left: -7px;
+      &:nth-last-of-type(2) {
+        border-width: 0px;
+      }
+
+      &:nth-last-of-type(1) {
+        background-color: @color-primary;
+        border-width: 0px;
+      }
+    }
+
+    .operators {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .viewWrap {
+    flex: 1;
+    margin: 1000px;
+    position: relative;
+  }
+
+  .draggingCover {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+  }
+}
+
+.debuging {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 1000;
+
+  pointer-events: none;
+
+  .debugTop, .debugBottom {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(45deg, #fff 25%, #fff 75%, @color-warning 0);
+    //background-position: ;
+    background-size: 20px 20px;
+    animation: moveBG 20s infinite linear;
+  }
+
+  .debugTop {
+    top: 0;
+  }
+
+  .debugBottom {
+    bottom: 0;
+  }
+}
+
+@keyframes moveBG {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: 600px;
+  }
+}

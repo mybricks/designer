@@ -1,0 +1,109 @@
+@import './theme';
+
+.view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .titleBar {
+    height: 35px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+    //border-top: 1px solid #D8D8D8;
+    display: flex;
+    padding: 10px 16px 0px 16px;
+  }
+
+  .body {
+    flex: 1;
+    overflow: auto;
+  }
+
+  .items {
+    //height: 100%;
+    padding-left: 10px;
+    //padding: 5px;
+
+    .item {
+      cursor: pointer;
+      height: 27px;
+      padding: 0 8px;
+      margin: 1px 10px 1px 5px;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      &:hover {
+        background-color: #EEE;
+      }
+    }
+
+    .active {
+      border-color: @color-primary;
+      background-color: #FFF !important;
+    }
+
+    .extented {
+      .comName {
+        color: #efc358;
+
+        span {
+          padding-left: 5px;
+          color: #AAA;
+          font-style: italic !important;
+        }
+      }
+    }
+
+    .module {
+      .comName {
+        color: #ea8e51;
+
+        span {
+          padding-left: 5px;
+          color: #AAA;
+          font-style: italic !important;
+        }
+      }
+    }
+
+    .noUI {
+      .comName {
+        color: #c1a049;
+        font-style: italic !important;
+      }
+    }
+
+    .comIcon {
+      max-width: 14px;
+      max-height: 14px;
+      margin-right: 5px;
+    }
+
+    .comItemContent {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .comName {
+      max-width: 150px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .comInfo {
+      width: max-content;
+      white-space: normal;
+      padding-left: 8px;
+    }
+
+
+  }
+}

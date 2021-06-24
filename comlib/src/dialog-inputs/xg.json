@@ -1,0 +1,20 @@
+{
+  "title": "DialogInputs",
+  "namespace": "xgraph.coms.dialogInputs",
+  "author": "CheMingjun",
+  "author_name": "车明君",
+  "version": "1.0.0",
+  "description": "对话框连接器",
+  "runtime": "./runtime.ts",
+  "rtType": "js",
+  "inputs": [
+    {
+      "id": "commit",
+      "title": "确定并关闭对话框"
+    },
+    {
+      "id": "cancel",
+      "title": "取消并关闭对话框"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+﻿@import url('../theme');
+@import "./SlotCommon";
+
+.viewWrap {
+  width: 100%;
+  height: 100%;
+  //overflow:hidden;
+  overflow: auto;
+  position: absolute;
+}
+
+.geoViewHover {
+  .zoomView {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23),
+    inset 0px 7px 50px 2px #ddd, inset 0px -12px 19px -19px #ddd;
+  }
+}
+
+.geoView {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  margin: 2000px;
+  z-index: 0;
+
+  min-width: 70px;
+  min-height: 50px;
+
+  //background: #fff;
+  box-shadow: 0px 2px 6px #AAA;
+  //padding: 51px;
+
+  //box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  //outline: 1px solid #ccc;
+
+  &:hover {
+    > .comResizer {
+      display: inherit !important;
+    }
+  }
+
+  .header {
+    height: 30px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #EEE;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #FFF;
+    display: flex;
+    padding-left: 5px;
+
+    span {
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      background-color: #EEE;
+      margin: auto 5px;
+    }
+  }
+
+  .zoomView {
+    //transform-origin: top left;
+    position: relative;
+
+    > .com-stub {
+      border: 1px dashed @color-primary;
+    }
+
+    > .placeholder {
+      z-index: 1000;
+      position: absolute;
+      left: 0px;
+      width: calc(100% + 8px);
+      transform: translateX(-6px) translateY(-5px);
+      height: 10px;
+      background-color: transparent;
+      border-left: 2px solid @color-primary;
+      border-right: 2px solid @color-primary;
+
+      > div {
+        border-top: 3px dashed @color-primary;
+        margin-top: 3px;
+      }
+    }
+
+    > .mover {
+      z-index: 1000;
+      position: absolute;
+      background: transparent;
+      width: 10px;
+      height: 10px;
+    }
+
+    > .comResizer {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      right: 3px;
+      bottom: 3px;
+      cursor: nwse-resize;
+      border-right: 2px solid #999;
+      border-bottom: 2px solid #999;
+      display: none;
+    }
+
+    .comResizerB {
+      position: absolute;
+      left: 0px;
+      right: 10px;
+      bottom: -5px;
+      height: 10px;
+      cursor: ns-resize;
+    }
+
+    .comResizerR {
+      position: absolute;
+      right: -5px;
+      top: 0px;
+      bottom: 10px;
+      width: 10px;
+      cursor: ew-resize;
+    }
+
+    .selectZone {
+      position: absolute;
+      border: 1px dashed #ccc;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  .zoomViewFlow {
+    position: relative;
+  }
+
+  .zoomViewAbsolute {
+    .com {
+      //position: absolute !important;
+    }
+  }
+}
+
+.view-geoabs-debug {
+  margin: 1000px;
+  position: relative;
+  display: inline-block;
+  min-width: 70px;
+  min-height: 50px;
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  overflow-y: auto;
+
+  > .zoom-view {
+    transform-origin: top left;
+    width: 100%;
+    height: 100%;
+
+    &-ly-flow {
+      position: static;
+    }
+
+    &-ly-absolute {
+      .geo-item {
+        position: absolute !important;
+      }
+    }
+
+    > .com-stub {
+      border: 1px dashed @color-primary;
+    }
+  }
+}

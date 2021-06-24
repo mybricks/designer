@@ -1,0 +1,124 @@
+.sperH {
+  height: 10px;
+  width: 100%;
+  cursor: ns-resize;
+  margin-bottom: -5px;
+  margin-top: -5px;
+  z-index: 100;
+}
+
+.console {
+  position: relative;
+  width: 100%;
+  font-size: 12px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+
+  .title {
+    padding-left: 12px;
+    color: #415058;
+    font-weight: bold;
+    height: 30px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #DDD;
+
+    .tt {
+      flex: 1
+    }
+
+    .clearIcon {
+      width: 14px;
+      height: 14px;
+      margin-right: 10px;
+      cursor: pointer;
+      background-image: url("https://si.geilicdn.com/img-026600000170bf610e4a0a2166a4-unadjust_128_128.png");
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .logs {
+    flex: 1;
+    //padding: 5px;
+    overflow: auto;
+
+    .log {
+      display: flex;
+      flex-direction: row;
+      // align-items: center;
+      padding: 3px 10px;
+      //line-height: 20px;
+      cursor: pointer;
+      margin: 2px;
+
+      &:hover {
+        background-color: #E5E5E5;
+      }
+
+      .time {
+        margin-right: 10px;
+        color: #999;
+        flex-shrink: 0;
+      }
+
+      .catelog {
+        //color:#E09E2B
+        margin-right: 10px;
+        font-weight: 500;
+      }
+
+      .content {
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+
+        > p {
+          overflow: auto;
+        }
+      }
+    }
+
+    .info {
+      color: #555;
+    }
+
+    .warn {
+      color: #E09E2B;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .logFocus {
+      background-color: #E5E5E5;
+
+      .jv-container.boxed {
+        box-shadow: none;
+        border-color: none;
+        background-color: #E5E5E5;
+      }
+    }
+  }
+
+  .jv-container.jv-light {
+    font-size: 12px;
+    margin-bottom: 5px;
+    min-width: 150px;
+  }
+
+  .jv-container.boxed {
+    border: none;
+  }
+
+  .jv-container.boxed:hover {
+    box-shadow: none;
+    border-color: none;
+    background-color: #E5E5E5;
+  }
+}

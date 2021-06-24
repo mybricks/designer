@@ -1,0 +1,18 @@
+@import "../../theme";
+
+.editor-switch {
+  :global {
+    .ant-switch-checked {
+      background-color: @color-primary;
+    }
+
+    .ant-switch-disabled, .ant-switch-loading {
+      cursor: default;
+      opacity: 1;
+    }
+
+    .ant-switch-disabled *, .ant-switch-loading * {
+      cursor: default;
+    }
+  }
+}

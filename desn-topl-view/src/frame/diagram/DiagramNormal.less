@@ -1,0 +1,75 @@
+﻿@import "./DiagramCommon";
+
+.diagramItem {
+  position: relative;
+
+  &:last-child{
+    .treeLines {
+      position: absolute;
+      top: -4px;
+      left: 15px;
+      height: 50%;
+      width: 30px;
+      border-left: 2px solid #BBB;
+      border-bottom: 2px solid #BBB;
+    }
+  }
+  &:not(:last-child){
+    .treeLines {
+      position: absolute;
+      top: -4px;
+      left: 15px;
+      bottom:-10px;
+      //height: calc(100% + 10px);
+      width: 30px;
+      border-left: 2px solid #BBB;
+      .line{
+        height: 50%;
+        border-bottom: 2px solid #BBB;
+      }
+    }
+  }
+}
+
+.diagramNormal {
+  margin-left: 30px;
+
+  .title {
+    font-size: 12px;
+    font-style: italic;
+    color: #AAA;
+    //font-weight: 520;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+  }
+
+  .startCom {
+    position: absolute;
+    left: 30px;
+    top: 35px;
+    user-select: none;
+    z-index: 10000;
+  }
+
+  .emptyStart {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 30px;
+    top: 54px;
+    background-color: #DDD;
+    border: 1px solid #BBB;
+    cursor: pointer;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #fff;
+
+    i {
+      margin-top: -3px;
+    }
+  }
+}

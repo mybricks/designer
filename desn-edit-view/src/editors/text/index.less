@@ -1,0 +1,29 @@
+.editor-text {
+  &__input {
+    width: 100%;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid #EEE;
+    background-color: #ffffff;
+    //box-shadow: 0 0 2px 0 #666666;
+    box-sizing: border-box;
+    transition: all 0.3s, height 0s;
+
+    &:hover {
+      border-color: #fa6400;
+    }
+
+    &:focus {
+      border-color: #fa6400;
+      -webkit-box-shadow: 0 0 0 2px #fa640033;
+      box-shadow: 0 0 0 2px #fa640033;
+    }
+  }
+
+  &__inputdisabled {
+    cursor: default;
+    background-color: #fff;
+    color: rgba(0, 0, 0, .85);
+  }
+}

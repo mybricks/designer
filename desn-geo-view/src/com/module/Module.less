@@ -1,0 +1,77 @@
+﻿@import url('../../theme');
+
+.moving {
+  //opacity: .2;
+  //outline: 1px dashed @color-primary;
+}
+
+.module {
+  pointer-events: auto !important;
+  //position: absolute;
+  outline: 1px dashed #DDAC8B;
+  outline-offset: -1px;
+  //width: 150px;
+  height: 100px;
+  width: 100%;
+  background-color: #FFF6EF;
+  > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      padding: 10px;
+      color: #777;
+      font-style: italic;
+      font-size: 12px;
+
+      > span {
+        color: #c1a049;
+      }
+    }
+
+    button {
+      padding: 3px 8px;
+      border: 1px solid #9EB289;
+      background-color: #FFF;
+      pointer-events: visible;
+      cursor: pointer;
+      font-size: 12px;
+    }
+  }
+}
+
+.labelTodo {
+  outline: 1px dashed #03B6FC;
+
+  &:before {
+    content: "Todo";
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    z-index: 1;
+    width: max-content;
+    height: 20px;
+    line-height: 20px;
+    padding: 0px 8px;
+    overflow: hidden;
+    position: absolute;
+    left: -2px;
+    bottom: 2px;
+    background: #03B6FC;
+    border-radius: 10px;
+    transform: scale(0.8);
+    opacity: .8;
+  }
+}
+
+.error {
+  font-size: 12px;
+  color: @color-error;
+  overflow: hidden;
+}
+

@@ -1,0 +1,68 @@
+{
+  "title": "循环",
+  "namespace": "xgraph.coms.for",
+  "author": "CheMingjun",
+  "author_name": "车明君",
+  "version": "1.0.0",
+  "description": "条件判断",
+  "icon": "./icon.png",
+  "runtime": "./For.tsx",
+  "inputs": [
+    {
+      "id": "datasource",
+      "title": "列表",
+      "schema": {
+        "request": [
+          {
+            "type": "array"
+          }
+        ],
+        "response": [
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  ],
+  "slots": [
+    {
+      "id": "content",
+      "title": "内容",
+      "inputs": [
+        {
+          "id": "curVal",
+          "title": "当前项",
+          "schema": {
+            "request": [
+              {
+                "type": "any"
+              }
+            ],
+            "response": [
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        {
+          "id": "index",
+          "title": "当前序号",
+          "schema": {
+            "request": [
+              {
+                "type": "number"
+              }
+            ],
+            "response": [
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

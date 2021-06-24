@@ -1,0 +1,70 @@
+﻿@import url('../theme');
+@import "./SlotCommon";
+
+.viewWrap {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.geoView {
+  display: inline-block;
+  position: relative;
+  margin: 2000px;
+  z-index: 0;
+
+  min-width: 50px;
+  min-height: 10px;
+
+  background: #fff;
+  box-shadow: 0px 2px 6px #AAA;
+  //padding:50px;
+  //box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  //outline: 1px solid #ccc;
+
+  &:hover {
+    > .comResizer {
+      display: inherit !important;
+    }
+  }
+
+  .zoomView {
+    min-height: 500px;
+    position: relative;
+  }
+
+  .zoomViewFlow {
+    position: static;
+  }
+}
+
+.view-geoabs-debug {
+  margin: 1000px;
+  position: relative;
+  display: inline-block;
+  min-width: 70px;
+  min-height: 50px;
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  overflow-y: auto;
+
+  > .zoom-view {
+    transform-origin: top left;
+    width: 100%;
+    height: 100%;
+
+    &-ly-flow {
+      position: static;
+    }
+
+    &-ly-absolute {
+      .geo-item {
+        position: absolute !important;
+      }
+    }
+
+    > .com-stub {
+      border: 1px dashed @color-primary;
+    }
+  }
+}
