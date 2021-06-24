@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import {ToplComModel} from "../../com/ToplComModel";
 import {PinModel} from "../../pin/PinModel";
 import {BaseUIModel, ComSeedModel, ModuleSeedModel, NS_Emits, NS_XGraphComLib, T_ComDef, T_PinSchema} from "@sdk";

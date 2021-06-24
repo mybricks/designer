@@ -1,4 +1,12 @@
-﻿import {PinModel} from '../pin/PinModel';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {PinModel} from '../pin/PinModel';
 import {ToplComModel} from '../com/ToplComModel';
 import {ConModel} from '../con/ConModel';
 import {Arrays, canConnectTo, getPosition, randomNum} from '@utils'

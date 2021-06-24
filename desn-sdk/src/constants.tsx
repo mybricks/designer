@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import Icon from "./Icon";
 
 export const ICON_COM_DEFAULT = `https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=1653910386,2069326335&fm=15&gp=0.jpg`

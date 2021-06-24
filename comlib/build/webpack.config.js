@@ -1,4 +1,13 @@
-﻿const path = require('path');
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+
+const path = require('path');
 
 module.exports = {
   entry: {'xgraph.comlib':'./src/index.ts'},

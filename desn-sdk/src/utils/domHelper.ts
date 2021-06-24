@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 export function inPosition(
   {x, y}: { x: number, y: number },
   {x: left, y: top, w, h}: { x: number, y: number, w: number, h: number }) {

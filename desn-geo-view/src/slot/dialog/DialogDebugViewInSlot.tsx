@@ -1,4 +1,12 @@
-﻿import css from './DialogDebugViewInSlot.less';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import css from './DialogDebugViewInSlot.less';
 
 import {observe, useComputed, useObservable} from '@mybricks/rxui';
 import React from 'react';

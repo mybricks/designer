@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import css from './OutlineView.less';
 import {observe, useObservable} from '@mybricks/rxui';
 import {ICON_COM_DEFAULT, NS_Emits} from '@sdk';

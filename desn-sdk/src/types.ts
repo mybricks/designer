@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import {FunctionComponent} from "react";
 import ComStyle from "./ComStyle";
 import {I_Connection, I_Frame, I_Node, I_Pin} from "@mybricks/compiler-js";

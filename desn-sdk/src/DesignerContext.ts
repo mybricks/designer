@@ -1,4 +1,12 @@
-﻿import {T_DesnConfig, T_XGraphComDef, T_XGraphComLib} from '.'
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {T_DesnConfig, T_XGraphComDef, T_XGraphComLib} from '.'
 import {Arrays, versionGreaterThan} from "./utils";
 
 export type T_Focusable = {

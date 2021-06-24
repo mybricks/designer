@@ -1,4 +1,12 @@
-﻿import {dragable, evt, observe, useComputed, useObservable, useWatcher} from '@mybricks/rxui';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {dragable, evt, observe, useComputed, useObservable, useWatcher} from '@mybricks/rxui';
 import React, {useEffect, useMemo} from 'react';
 import {ToplComModel} from "../com/ToplComModel";
 import css from "./ToplNormalView.less";

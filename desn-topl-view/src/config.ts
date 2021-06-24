@@ -1,8 +1,10 @@
 ﻿/**
- * Topological view
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
  *
- *
- * @author: CheMingjun(chemingjun@126.com)
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
  */
 import {PinModel} from "./pin/PinModel";
 import {ToplComModel} from "./com/ToplComModel";

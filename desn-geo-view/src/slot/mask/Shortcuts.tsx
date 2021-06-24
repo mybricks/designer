@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import {MaskContext} from "./index";
 import {DesignerContext, NS_Configurable} from "@sdk";
 import {observe, useObservable} from "@mybricks/rxui";

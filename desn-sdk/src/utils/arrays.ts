@@ -1,4 +1,13 @@
 /**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+
+/**
  * 对多个数组进行foreach
  * 例:        Arrays.each(sth => {sth.state = 0}, this.itemModelAry, this.inputPins, this.outputPins)
  * @param fn each函数

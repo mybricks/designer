@@ -1,4 +1,12 @@
-﻿import css from './Con.less'
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import css from './Con.less'
 import {ConModel} from './ConModel';
 import {dragable, evt, observe, useComputed, useObservable,} from '@mybricks/rxui';
 import {DesignerContext, NS_Configurable, NS_Emits, NS_Listenable} from "@sdk";

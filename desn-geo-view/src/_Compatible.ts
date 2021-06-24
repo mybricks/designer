@@ -1,4 +1,12 @@
-﻿import {GeoComModel} from "./com/GeoComModel";
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {GeoComModel} from "./com/GeoComModel";
 import SlotModel from "./slot/SlotModel";
 
 export const _2020_10_25 = (function () {

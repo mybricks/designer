@@ -1,4 +1,12 @@
-﻿import {evt, observe, useComputed} from '@mybricks/rxui';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {evt, observe, useComputed} from '@mybricks/rxui';
 import css from './ExceptionCom.less';
 import {ComContext, getStyle, Inputs, Outputs} from '../ToplCom';
 import {ToplComModel} from "../ToplComModel";

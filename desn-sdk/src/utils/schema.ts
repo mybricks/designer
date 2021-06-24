@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import {T_IOPin, T_JSONSchema, T_Pin, T_PinSchema} from "@sdk";
 import * as schemaComparer from "./schemaComparer";
 

@@ -6,7 +6,6 @@
   "author": "CheMingjun",
   "license": "ISC",
   "dependencies": {
-    "@hb/rxui": "0.0.54",
     "react": "^16.13.1"
   },
   "scripts": {

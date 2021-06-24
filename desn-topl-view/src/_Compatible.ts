@@ -1,4 +1,11 @@
-﻿//2020-8-31
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import {PinModel} from "./pin/PinModel";
 import FrameModel from "./frame/FrameModel";
 import {Arrays} from "@utils";

@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import parentCss from "./Diagram.less";
 import css from './DiagramMini.less'
 import {dragable, evt, observe, useComputed} from "@mybricks/rxui";

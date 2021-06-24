@@ -1,4 +1,12 @@
-﻿import {evt, observe, useComputed} from '@mybricks/rxui';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {evt, observe, useComputed} from '@mybricks/rxui';
 import {ICON_COM_DEFAULT, NS_Configurable, NS_Listenable, NS_Shortable} from '@sdk';
 import {useMemo} from 'react';
 import css from './Normal.less';

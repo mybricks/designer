@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import css from './BlocklyView.less'
 
 import {dragable, evt, observe, useComputed, useObservable} from "@mybricks/rxui";

@@ -1,4 +1,12 @@
-﻿import React, {useEffect} from 'react'
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import React, {useEffect} from 'react'
 import {Ignore, observe, useComputed, useObservable} from '@mybricks/rxui'
 import {BaseUIModel, DesignerContext, NS_Emits, T_ComDef} from '@sdk'
 

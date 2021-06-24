@@ -1,4 +1,12 @@
-﻿import {GeoComModel} from './GeoComModel';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {GeoComModel} from './GeoComModel';
 
 export default class GeoComDebugModel extends GeoComModel {
   // _id

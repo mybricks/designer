@@ -1,4 +1,12 @@
-﻿import css from './StageView.less'
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import css from './StageView.less'
 import React, {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {dump as dumpView, evt, load as loadView, observe, useComputed, useObservable} from '@mybricks/rxui'

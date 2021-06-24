@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import {clone, Ignore, Serializable} from '@mybricks/rxui';
 import BaseUIModel from "./BaseUIModel";
 import {I_GeoComModel, I_ToplComModel, T_ComDef, T_ComRuntimeModel} from ".";

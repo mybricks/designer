@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import {observe, uuid} from "@mybricks/rxui";
 import {ComContext} from "./GeoCom";
 import {ModuleSeedModel, NS_XGraphComLib} from "@sdk";

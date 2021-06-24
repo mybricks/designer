@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import {GeoViewContext} from "./GeoView";
 import {BaseUIModel, ComSeedModel, T_ComDef, NS_XGraphComLib, ModuleSeedModel} from "@sdk";
 import {getPosition} from "@utils";

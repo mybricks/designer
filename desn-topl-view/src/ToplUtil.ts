@@ -1,10 +1,11 @@
 ﻿/**
- * Topological view
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
  *
- *
- * @author: CheMingjun(chemingjun@126.com)
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
  */
-
 import FrameModel from './frame/FrameModel';
 import {PinModel} from "./pin/PinModel";
 import {JointModel} from "./joint/JointModel";

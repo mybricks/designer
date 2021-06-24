@@ -1,4 +1,12 @@
-﻿import FrameModel from "./topl-view/frame/FrameModel";
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import FrameModel from "./topl-view/frame/FrameModel";
 import StageViewContext from "./StageViewContext";
 import SlotModel from "./geo-view/slot/SlotModel";
 

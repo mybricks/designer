@@ -1,4 +1,12 @@
-﻿import {observe, useObservable, useWatcher} from '@mybricks/rxui';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {observe, useObservable, useWatcher} from '@mybricks/rxui';
 import React, {useEffect} from 'react';
 import {DesignerContext, NS_Emits} from '@sdk';
 import css from "./ToplView.less";

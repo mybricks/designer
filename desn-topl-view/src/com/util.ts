@@ -1,4 +1,12 @@
-﻿import {ToplComModel} from './ToplComModel';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {ToplComModel} from './ToplComModel';
 import FrameModel from '../frame/FrameModel';
 import {getPosition, Arrays} from '@utils';
 

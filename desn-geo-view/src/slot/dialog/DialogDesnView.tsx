@@ -1,4 +1,12 @@
-﻿import css from './DialogDesnView.less';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import css from './DialogDesnView.less';
 
 import {dragable, evt, observe, useComputed, useObservable, useWatcher} from '@mybricks/rxui';
 import React, {useEffect} from 'react';

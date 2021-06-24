@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import {ToplViewContext} from "./frame/ToplView";
 import {PinModel} from "./pin/PinModel";
 import {JointModel} from "./joint/JointModel";

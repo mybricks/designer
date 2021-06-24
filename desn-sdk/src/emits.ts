@@ -1,4 +1,12 @@
-﻿import BaseUIModel from './BaseUIModel';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import BaseUIModel from './BaseUIModel';
 import ComSeedModel from "./ComSeedModel";
 import ComRuntimeModel from './ComRuntimeModel'
 import {

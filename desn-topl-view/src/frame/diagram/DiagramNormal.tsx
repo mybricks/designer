@@ -1,3 +1,11 @@
+/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
 import css from "./DiagramNormal.less";
 import {dragable, evt, observe, useComputed} from "@mybricks/rxui";
 import React, {useMemo} from "react";

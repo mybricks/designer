@@ -1,4 +1,12 @@
-﻿import {clone, Ignore, Serializable} from '@mybricks/rxui';
+﻿/**
+ * MyBricks Opensource
+ * https://mybricks.world
+ * This source code is licensed under the MIT license.
+ *
+ * CheMingjun @2019
+ * mailTo:mybricks@126.com wechatID:ALJZJZ
+ */
+import {clone, Ignore, Serializable} from '@mybricks/rxui';
 import ToplBaseModel from '../ToplBaseModel';
 import {E_ItemType, I_Pin, T_PinDirection} from '@mybricks/compiler-js';
 import {ConModel} from '../con/ConModel';
