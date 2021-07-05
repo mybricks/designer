@@ -42,13 +42,13 @@ function ComsPanel({mode}) {
           大纲
         </div>
       </div>
-      <div style={{position: 'relative', display: myContext.activeTabId === 'coms' ? 'block' : 'none'}}>
+      <div style={{position: 'relative', display: myContext.activeTabId === 'coms' ? 'block' : 'none', height: 'calc(100% - 42px)', overflowY: 'auto'}}>
         <ComlibView mode={mode}/>
         <div
           // className={`${!myContext.mode ? css.disCover : ''}`}
         ></div>
       </div>
-      <div style={{display: myContext.activeTabId === 'outline' ? 'block' : 'none'}}>
+      <div style={{display: myContext.activeTabId === 'outline' ? 'block' : 'none', height: 'calc(100% - 42px)', overflowY: 'auto'}}>
         <OutlineView/>
       </div>
     </div>

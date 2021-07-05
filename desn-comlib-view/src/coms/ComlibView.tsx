@@ -9,10 +9,11 @@
 
 import css from './ComlibView.less';
 import {evt, observe, useComputed, useObservable, uuid} from '@mybricks/rxui';
-import {Button, Select} from 'antd'
+import {Button, Select, Tooltip} from 'antd'
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import DownOutlined from '@ant-design/icons/DownOutlined';
 import RightOutlined from '@ant-design/icons/RightOutlined';
+import CaretRightOutlined from '@ant-design/icons/CaretRightOutlined'
 import {ComSeedModel, DesignerContext, NS_Emits, T_XGraphComDef} from '@sdk';
 
 import {versionGreaterThan} from "@utils";
@@ -49,6 +50,7 @@ export default function ComlibView({mode}) {
         if (lib.visible !== false) {
           if (lib.comAray.find(comDef => myCtx.matchCom(comDef))) {////TODO
             lib._visible = true
+            lib._expanded = true
             optionlibs.push(lib)
           } else {
             lib._visible = false
@@ -60,10 +62,10 @@ export default function ComlibView({mode}) {
         }
       })
 
-      const activeLib = optionlibs.find(lib => lib.id === myCtx.activeLib?.id)
-      if (!activeLib) {
-        myCtx.activeLib = optionlibs[0]
-      }
+      // const activeLib = optionlibs.find(lib => lib.id === myCtx.activeLib?.id)
+      // if (!activeLib) {
+      //   myCtx.activeLib = optionlibs[0]
+      // }
     }
   })
 
@@ -89,102 +91,138 @@ export default function ComlibView({mode}) {
   })
 
   // 组件列表
-  const coms = useComputed(() => {
-    const rdLib = []
-    const activeLib = myCtx.activeLib
-    if (activeLib) {
-      if (!rdLib.find(lib => lib.id === activeLib.id)) {
-        let ary = []
-        if (activeLib.comAray) {
-          let noCatalogAry: JSX.Element[] = []
-          let hasCatalog = false
-          activeLib.comAray.forEach((com, idx) => {
-            // if (Array.isArray(com.comAray)) {
-            //   hasCatalog = true
-            //   const coms = com.comAray.map((com) => {
-            //     const jsx = renderComItem(activeLib, com)
-            //     return jsx
-            //   })
-            //   ary.push(
-            //     <ExpandableCatalog
-            //       key={`${com.title}-${idx}`}
-            //       name={com.title}
-            //     >
-            //       {coms}
-            //     </ExpandableCatalog>
-            //   )
-            // } else {
-              const renderedItem = renderComItem(activeLib, com)
-              renderedItem && noCatalogAry.push(renderedItem)
-            //}
-          })
-          if (noCatalogAry.length > 0) {
-            let noCatalogComs = (
-              <div key={'noCatalog'} className={css.coms}>
-                {noCatalogAry}
-              </div>
-            )
-            if (hasCatalog) {
-              noCatalogComs = (
-                <ExpandableCatalog key="others" name="其它">
-                  <>{noCatalogComs}</>
-                </ExpandableCatalog>
-              )
-            }
-            ary.push(noCatalogComs)
-          }
-        }
+  // const coms = useComputed(() => {
+  //   const rdLib = []
+  //   const activeLib = myCtx.activeLib
+  //   if (activeLib) {
+  //     if (!rdLib.find(lib => lib.id === activeLib.id)) {
+  //       let ary = []
+  //       if (activeLib.comAray) {
+  //         let noCatalogAry: JSX.Element[] = []
+  //         let hasCatalog = false
+  //         activeLib.comAray.forEach((com, idx) => {
+  //           // if (Array.isArray(com.comAray)) {
+  //           //   hasCatalog = true
+  //           //   const coms = com.comAray.map((com) => {
+  //           //     const jsx = renderComItem(activeLib, com)
+  //           //     return jsx
+  //           //   })
+  //           //   ary.push(
+  //           //     <ExpandableCatalog
+  //           //       key={`${com.title}-${idx}`}
+  //           //       name={com.title}
+  //           //     >
+  //           //       {coms}
+  //           //     </ExpandableCatalog>
+  //           //   )
+  //           // } else {
+  //             const renderedItem = renderComItem(activeLib, com)
+  //             renderedItem && noCatalogAry.push(renderedItem)
+  //           //}
+  //         })
+  //         if (noCatalogAry.length > 0) {
+  //           let noCatalogComs = (
+  //             <div key={'noCatalog'} className={css.coms}>
+  //               {noCatalogAry}
+  //             </div>
+  //           )
+  //           if (hasCatalog) {
+  //             noCatalogComs = (
+  //               <ExpandableCatalog key="others" name="其它">
+  //                 <>{noCatalogComs}</>
+  //               </ExpandableCatalog>
+  //             )
+  //           }
+  //           ary.push(noCatalogComs)
+  //         }
+  //       }
 
-        rdLib.push(
-          {id: activeLib.id, content: ary}
-        )
-      }
-    }
+  //       rdLib.push(
+  //         {id: activeLib.id, content: ary}
+  //       )
+  //     }
+  //   }
 
-    return rdLib.map(({id, content}, idx) => {
-        return (
-          <div key={id}
-               style={{display: id === activeLib.id ? 'block' : 'none'}}>
-            {content}
-          </div>
-        )
-      }
-    )
-  })
+  //   return rdLib.map(({id, content}, idx) => {
+  //       return (
+  //         <div key={id}
+  //              style={{display: id === activeLib.id ? 'block' : 'none'}}>
+  //           {content}
+  //         </div>
+  //       )
+  //     }
+  //   )
+  // })
 
   // 分类选项
-  const catalogOptions = useComputed(() => {
-    return myCtx.renderedLib.reduce((obj: Record<string, JSX.Element[]>, {
-      id,
-      content
-    }: { id: string, content: JSX.Element[] }) => {
-      let options: JSX.Element[] = []
-      if (content[0].key !== 'noCatalog') {
-        options = content.map((catalog, idx) => (
-          <Option
-            value={catalog.props.name}
-            key={idx}
-          >
-            {catalog.props.name}
-          </Option>
-        ))
-      }
-      return {
-        ...obj,
-        [id]: options
-      }
-    }, {})
-  })
+  // const catalogOptions = useComputed(() => {
+  //   return myCtx.renderedLib.reduce((obj: Record<string, JSX.Element[]>, {
+  //     id,
+  //     content
+  //   }: { id: string, content: JSX.Element[] }) => {
+  //     let options: JSX.Element[] = []
+  //     if (content[0].key !== 'noCatalog') {
+  //       options = content.map((catalog, idx) => (
+  //         <Option
+  //           value={catalog.props.name}
+  //           key={idx}
+  //         >
+  //           {catalog.props.name}
+  //         </Option>
+  //       ))
+  //     }
+  //     return {
+  //       ...obj,
+  //       [id]: options
+  //     }
+  //   }, {})
+  // })
 
   // 当前组件库索引
-  const libIdx = myCtx.activeLib ? myCtx.context.comLibAry.findIndex(lib => lib.id === myCtx.activeLib.id) : -1
+  // const libIdx = myCtx.activeLib ? myCtx.context.comLibAry.findIndex(lib => lib.id === myCtx.activeLib.id) : -1
+
+  const RenderComlibs = useComputed(() => {
+    let comLibAry = myCtx.context.comLibAry ? myCtx.context.comLibAry.filter(comLib => (comLib.visible === void 0 || comLib.visible) && comLib._visible) : []
+    return comLibAry.map((comLib, idx) => {
+      const title = `${comLib.title}(${comLib.version})`
+      return (
+        <div className={css.collapsePanel}>
+          <div className={css.header} onClick={evt(() => {
+            comLib._expanded = !comLib._expanded
+          }).stop}>
+            <CaretRightOutlined className={`${css.arrowIcon} ${comLib._expanded ? css.expandedIcon : ''}`}/>
+            <Tooltip title={title} placement='topLeft'>
+              <div className={css.title}>
+                {title}
+              </div>
+            </Tooltip>
+          </div>
+          <div className={css.comLibsContainer} style={{height: comLib._expanded ? '100%' : 0}}>
+            {coms(comLib)}
+            {/* {useMemo(() => {
+              return (
+                <div>123</div>
+              )
+            }, [])} */}
+            {/* <div className={css.basicList}>
+              {coms(comLib)}
+            </div> */}
+          </div>
+
+          {idx === comLibAry.length - 1 && (
+            <div className={css.addComBtn} onClick={addComLib}>添加组件库</div>
+          )}
+        </div>
+      )
+    })
+  })
 
   return (
     <div className={`${css.panel}`}
          onClick={evt(null).stop}>
       <div className={css.toolbarLayout}>
         <div className={css.libSelection}>
-          <Select
+          {/* <Select
             value={libIdx >= 0 ? libIdx : '[组件库为空]'}
             onChange={(value) => {
               myCtx.activeLib = myCtx.context.comLibAry[value]
@@ -201,7 +239,8 @@ export default function ComlibView({mode}) {
                 onClick={addComLib}
               />
             ) : null
-          }
+          } */}
+          {RenderComlibs}
         </div>
         {/* 分类选择框 */}
         {/*<div className={css.catalogSelection}>*/}
@@ -218,9 +257,9 @@ export default function ComlibView({mode}) {
         {/*    {myCtx.activeLib ? catalogOptions[myCtx.activeLib.id] : null}*/}
         {/*  </Select>*/}
         {/*</div>*/}
-        <div className={css.comsSelection}>
+        {/* <div className={css.comsSelection}>
           {coms}
-        </div>
+        </div> */}
       </div>
     </div>
   )
@@ -299,7 +338,8 @@ function renderComItem(lib, com) {
       // <div key={com.namespace} ref={ele => ele & (ref.current = ele as any)}
       <div key={com.namespace}
            data-namespace={com.namespace}
-           className={css.com}
+          //  className={css.com}
+          className={css.comItem}
         // onMouseDown={evt((et: any) => {
         //   if (et.target.tagName.match(/input/gi) || !myCtx.show) {
         //     return true//TODO input 全局事件待处理
@@ -312,16 +352,51 @@ function renderComItem(lib, com) {
              }
              click(lib, com)
            })}>
-        <div className={css.title}>
+        {/* <div className={css.title}>
           {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
             <div className={css.comIconFallback}>{com.title?.substr(0, 1)}</div>
           ) : (
             <div className={css.comIcon} style={{backgroundImage: `url(${com.icon})`}}/>
           )}
           <span className={css.comText}>{com.title}</span>
+        </div> */}
+        <div className={css.widgetIconWrapper}>
+          {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
+            <div className={css.comIconFallback}>{com.title?.substr(0, 1)}</div>
+          ) : (
+            <img src={com.icon}/>
+          )}
         </div>
+        <span>{com.title}</span>
       </div>
     )
+    // return (
+    //   // <div key={com.namespace} ref={ele => ele & (ref.current = ele as any)}
+    //   <div key={com.namespace}
+    //        data-namespace={com.namespace}
+    //        className={css.com}
+    //     // onMouseDown={evt((et: any) => {
+    //     //   if (et.target.tagName.match(/input/gi) || !myCtx.show) {
+    //     //     return true//TODO input 全局事件待处理
+    //     //   }
+    //     //   mouseDown(et, com, lib)
+    //     // })}
+    //        onClick={evt((et: any) => {
+    //          if (et.target.tagName.match(/input/gi)) {
+    //            return true//TODO input 全局事件待处理
+    //          }
+    //          click(lib, com)
+    //        })}>
+    //     <div className={css.title}>
+    //       {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
+    //         <div className={css.comIconFallback}>{com.title?.substr(0, 1)}</div>
+    //       ) : (
+    //         <div className={css.comIcon} style={{backgroundImage: `url(${com.icon})`}}/>
+    //       )}
+    //       <span className={css.comText}>{com.title}</span>
+    //     </div>
+    //   </div>
+    // )
   }
 }
 
@@ -435,4 +510,42 @@ function ExpandableCatalog({name, children}: { name: string, children: ReactChil
       </div>
     </div>
   )
+}
+
+function coms(comLib) {
+  const rdLib = []
+  let ary = []
+  let noCatalogAry: JSX.Element[] = []
+  let hasCatalog = false
+  comLib.comAray.forEach((com, idx) => {
+    const renderedItem = renderComItem(comLib, com)
+    renderedItem && noCatalogAry.push(renderedItem)
+  })
+  if (noCatalogAry.length > 0) {
+    let noCatalogComs = (
+      <div key={'noCatalog'} className={css.basicList}>
+        {noCatalogAry}
+      </div>
+    )
+    if (hasCatalog) {
+      noCatalogComs = (
+        <ExpandableCatalog key="others" name="其它">
+          <>{noCatalogComs}</>
+        </ExpandableCatalog>
+      )
+    }
+    ary.push(noCatalogComs)
+  }
+
+  rdLib.push(
+    {id: comLib.id, content: ary}
+  )
+
+  return rdLib.map(({id, content}, idx) => {
+    return (
+      <div key={id}>
+        {content}
+      </div>
+    )
+  })
 }

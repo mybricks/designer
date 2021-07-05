@@ -30,13 +30,140 @@
       padding-bottom: 0;
       font-size: 10px;
 
-      .addComBtn {
-        margin-left: 10px;
-        padding: 0;
-        border: 0;
-        background-color: transparent;
-        opacity: .5;
+      .collapsePanel {
+        .header {
+          height: 32px;
+          padding-left: 10px;
+          padding-right: 10px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          .arrowIcon {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 4px;
+            font-size: 12px;
+            line-height: 12px;
+            text-align: center;
+            color: rgb(141, 158, 167);
+            transition: transform 0.2s ease-in-out 0s;
+          }
+
+          .expandedIcon {
+            transform: rotate(90deg);
+          }
+
+          .title {
+            flex: 1 1 0%;
+            height: 20px;
+            line-height: 18px;
+            color: rgb(65, 80, 88);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            border-top: 1px solid transparent;
+            border-bottom: 1px solid transparent;
+          }
+        }
+
+        .comLibsContainer {
+          overflow: hidden;
+          // transition: height 200ms ease-in-out 0s;
+
+          .basicList {
+            display: flex;
+            flex-flow: row wrap;
+            padding: 0px 4px 0px 12px;
+            margin-top: 8px;
+
+            .comItem {
+              width: 65px;
+              height: 65px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              // background: rgb(248, 250, 252);
+              color: rgb(91, 107, 115);
+              border-radius: 4px;
+              margin-bottom: 8px;
+              margin-right: 8px;
+              cursor: pointer;
+              transition: all 0.2s ease-out 0s;
+              position: relative;
+
+              &:hover {
+                background: rgb(225, 228, 231);
+              }
+
+              .widgetIconWrapper {
+                height: 30px;
+                width: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 7px;
+
+                .comIconFallback {
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+                  background: #eee;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  //font-weight: bold;
+                  color: #777;
+                }
+
+                img {
+                  height: 32px;
+                  width: 32px;
+                  object-fit: cover;
+                  display: block;
+                }
+              }
+
+              span {
+                margin-top: 6px;
+              }
+            }
+          }
+        }
+
+        .addComBtn {
+          cursor: pointer;
+          margin: 0px 10px;
+          height: 28px;
+          background: rgb(255, 255, 255);
+          // border: 1px solid rgb(41, 141, 248);
+          border: 1px solid #FFD1D6;
+          border-radius: 4px;
+          // color: rgb(41, 141, 248);
+          color: #fa6400;
+          font-size: 12px;
+          line-height: 28px;
+          text-align: center;
+          flex: 1 1 0%;
+          margin-bottom: 16px;
+
+          &:hover {
+            color: rgb(255, 255, 255);
+            // background-color: rgb(41, 141, 248);
+            background-color: #fa6400;
+          }
+        }
       }
+
+      // .addComBtn {
+      //   margin-left: 10px;
+      //   padding: 0;
+      //   border: 0;
+      //   background-color: transparent;
+      //   opacity: .5;
+      // }
 
       > div {
         //color: #999;
