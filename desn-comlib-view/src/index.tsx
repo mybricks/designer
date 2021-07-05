@@ -11,7 +11,7 @@ import css from './index.less';
 import ComlibView from './coms/ComlibView'
 
 import OutlineView from './outline/OutlineView'
-import {useObservable} from "../../../rxui";
+import {useObservable} from "@mybricks/rxui";
 
 class MyContext {
   activeTabId: string = 'coms'
