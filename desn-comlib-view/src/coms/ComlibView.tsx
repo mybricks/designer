@@ -364,10 +364,10 @@ function renderComItem(lib, com) {
           {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
             <div className={css.comIconFallback}>{com.title?.substr(0, 1)}</div>
           ) : (
-            <img src={com.icon}/>
+            <div className={css.img} style={{backgroundImage: `url(${com.icon})`}}></div>
           )}
         </div>
-        <span>{com.title}</span>
+        <div className={css.title}>{com.title}</div>
       </div>
     )
     // return (

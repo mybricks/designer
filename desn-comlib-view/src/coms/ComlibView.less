@@ -118,16 +118,22 @@
                   color: #777;
                 }
 
-                img {
-                  height: 32px;
+                .img {
                   width: 32px;
-                  object-fit: cover;
-                  display: block;
+                  height: 32px;
+                  background-repeat: no-repeat;
+                  background-position: center center;
+                  background-size: 100%;
                 }
               }
 
-              span {
+              .title {
+                width: 100%;
+                text-align: center;
                 margin-top: 6px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
             }
           }
