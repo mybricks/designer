@@ -107,19 +107,20 @@
     }
 
     span {
-      padding: 2px 5px 2px 0;
+      padding: 2px 6px;
       background-color: @color-primary;
       display: inline-block;
       pointer-events: visible;
       cursor: pointer;
+      border-radius: 3px 3px 0 0;
 
-      &:first-child {
-        padding-left: 8px;
+      &:first-child:not(:last-child) {
+        //padding-left: 8px;
         border-radius: 3px 0 0 0;
       }
 
-      &:last-child {
-        padding-right: 8px;
+      &:last-child:not(:first-child) {
+        //padding-right: 8px;
         border-radius: 0 3px 0 0;
       }
 
