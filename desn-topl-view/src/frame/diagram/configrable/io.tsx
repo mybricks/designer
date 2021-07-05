@@ -16,7 +16,7 @@ export default function get(diagramModel: DiagramModel, tvCtx: ToplViewContext) 
   const {frameModel, context, emitItem, emitSnap} = tvCtx
   const rtn = []
 
-  const normalCategary = new NS_Configurable.Category('页面全局')
+  const normalCategary = new NS_Configurable.Category('页面初始化')
   rtn.push(normalCategary)
 
   let normalGroup = new NS_Configurable.Group();

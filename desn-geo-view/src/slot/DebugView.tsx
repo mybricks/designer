@@ -131,7 +131,7 @@ function computeZoomViewStyle() {
   const viewStyle = viewModel.style
   return {
     width: width + 'px',
-    height: height + 'px',
+    minHeight: height + 'px',
     transform: `scale(1)`,
     backgroundColor: viewStyle.backgroundColor,
     backgroundImage: viewStyle.backgroundImage,

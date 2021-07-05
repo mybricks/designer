@@ -16,23 +16,30 @@ import RightOutlined from '@ant-design/icons/RightOutlined';
 import {ComSeedModel, DesignerContext, NS_Emits, T_XGraphComDef} from '@sdk';
 
 import {versionGreaterThan} from "@utils";
-import {createPortal} from 'react-dom'
 import React, {ReactChild, useState} from 'react';
-import {ComLibViewCtx} from "./ComAdder";
+import Ctx from './Ctx'
 
 const {Option} = Select;
 
-let myCtx: ComLibViewCtx
+let myCtx: Ctx
 
-export default function ComlibView({load}) {
-  myCtx = observe(ComLibViewCtx, {from: 'parents'})
+export default function ComlibView({mode}) {
+  const context = observe(DesignerContext, {from: 'parents'})
+  const emitSnap = useObservable(NS_Emits.Snap, {expectTo: 'parents'})
+  const emitItems = useObservable(NS_Emits.Component, {expectTo: 'parents'})
+  const emitLogs = useObservable(NS_Emits.Logs, {expectTo: 'parents'})
 
-  return createPortal(<RenderPanel/>, document.body)
-}
+  myCtx = useObservable(Ctx, next => next({
+    context,
+    emitLogs,
+    emitSnap,
+    emitItems,
+    mode,
+    renderedLib: [],
+  }), {to: 'children'}, [mode])
 
-function RenderPanel() {
   useComputed(() => {
-    if (myCtx.show && myCtx.context.comLibAry) {
+    if (myCtx.context.comLibAry) {
       const optionlibs: { id: string; comAray: any; }[] = []
       myCtx.context.comLibAry.forEach(lib => {
         if (!lib.id) {
@@ -40,7 +47,7 @@ function RenderPanel() {
         }
 
         if (lib.visible !== false) {
-          if (lib.comAray.find(comDef => !comDef.rtType || comDef.rtType.match(/vue|react/gi))) {
+          if (lib.comAray.find(comDef => myCtx.matchCom(comDef))) {////TODO
             lib._visible = true
             optionlibs.push(lib)
           } else {
@@ -70,8 +77,7 @@ function RenderPanel() {
             <Option
               key={lib.id + 'title'}
               className={`${css.lib} ${myCtx.activeLib === lib ? css.libActive : ''}`}
-              value={idx}
-            >
+              value={idx}>
               {lib.title} {lib.version}
             </Option>
           )
@@ -84,10 +90,8 @@ function RenderPanel() {
 
   // 组件列表
   const coms = useComputed(() => {
-    const rdLib = myCtx.renderedLib
-
+    const rdLib = []
     const activeLib = myCtx.activeLib
-
     if (activeLib) {
       if (!rdLib.find(lib => lib.id === activeLib.id)) {
         let ary = []
@@ -95,22 +99,24 @@ function RenderPanel() {
           let noCatalogAry: JSX.Element[] = []
           let hasCatalog = false
           activeLib.comAray.forEach((com, idx) => {
-            if (Array.isArray(com.comAray)) {
-              // 列表一级为组件分类
-              hasCatalog = true
-              const coms = com.comAray.map((com: any) => renderComItem(activeLib, com, myCtx))
-              ary.push(
-                <ExpandableCatalog
-                  key={`${com.title}-${idx}`}
-                  name={com.title}
-                >
-                  {coms}
-                </ExpandableCatalog>
-              )
-            } else {
-              const renderedItem = renderComItem(activeLib, com, myCtx)
+            // if (Array.isArray(com.comAray)) {
+            //   hasCatalog = true
+            //   const coms = com.comAray.map((com) => {
+            //     const jsx = renderComItem(activeLib, com)
+            //     return jsx
+            //   })
+            //   ary.push(
+            //     <ExpandableCatalog
+            //       key={`${com.title}-${idx}`}
+            //       name={com.title}
+            //     >
+            //       {coms}
+            //     </ExpandableCatalog>
+            //   )
+            // } else {
+              const renderedItem = renderComItem(activeLib, com)
               renderedItem && noCatalogAry.push(renderedItem)
-            }
+            //}
           })
           if (noCatalogAry.length > 0) {
             let noCatalogComs = (
@@ -174,89 +180,88 @@ function RenderPanel() {
   const libIdx = myCtx.activeLib ? myCtx.context.comLibAry.findIndex(lib => lib.id === myCtx.activeLib.id) : -1
 
   return (
-    <div
-      className={`${css.mask} ${myCtx.show ? '' : css.hide}`}
-      onClick={() => {
-        myCtx.show = false
-      }}>
-      <div
-        className={`${css.panel} ${myCtx.show ? '' : css.hide}`}
-        onClick={evt(null).stop}
-      >
-        <div className={css.toolbarLayout}>
-          {/* 组件库选择框 */}
-          <div className={css.libSelection}>
-            <Select
-              value={libIdx >= 0 ? libIdx : '[组件库为空]'}
-              onChange={(value) => {
-                myCtx.activeLib = myCtx.context.comLibAry[value]
-              }}
-              style={{width: 240}}
-            >
-              {libTitleAry}
-            </Select>
-            {
-              myCtx.context.configs.comlibAdder ? (
-                <Button
-                  shape="circle"
-                  icon={<PlusOutlined/>}
-                  className={css.addComBtn}
-                  onClick={addComLib}
-                />
-              ) : null
-            }
-          </div>
-          {/* 分类选择框 */}
-          <div className={css.catalogSelection}>
-            <Select
-              defaultValue=""
-              onChange={(value) => {
-                myCtx.activeCatalog = value
-              }}
-              style={{width: 240}}
-            >
-              <Option value="" key="-1">
-                全部类型
-              </Option>
-              {myCtx.activeLib ? catalogOptions[myCtx.activeLib.id] : null}
-            </Select>
-          </div>
-          {/* 组件选择列表 */}
-          <div className={css.comsSelection}>
-            {coms}
-          </div>
+    <div className={`${css.panel}`}
+         onClick={evt(null).stop}>
+      <div className={css.toolbarLayout}>
+        <div className={css.libSelection}>
+          <Select
+            value={libIdx >= 0 ? libIdx : '[组件库为空]'}
+            onChange={(value) => {
+              myCtx.activeLib = myCtx.context.comLibAry[value]
+            }}
+            style={{width: 190}}>
+            {libTitleAry}
+          </Select>
+          {
+            myCtx.context.configs.comlibAdder ? (
+              <Button
+                shape="circle"
+                icon={<PlusOutlined/>}
+                className={css.addComBtn}
+                onClick={addComLib}
+              />
+            ) : null
+          }
+        </div>
+        {/* 分类选择框 */}
+        {/*<div className={css.catalogSelection}>*/}
+        {/*  <Select*/}
+        {/*    defaultValue=""*/}
+        {/*    onChange={(value) => {*/}
+        {/*      myCtx.activeCatalog = value*/}
+        {/*    }}*/}
+        {/*    style={{width: 190}}*/}
+        {/*  >*/}
+        {/*    <Option value="" key="-1">*/}
+        {/*      全部类型*/}
+        {/*    </Option>*/}
+        {/*    {myCtx.activeLib ? catalogOptions[myCtx.activeLib.id] : null}*/}
+        {/*  </Select>*/}
+        {/*</div>*/}
+        <div className={css.comsSelection}>
+          {coms}
         </div>
       </div>
     </div>
   )
 }
 
+
 async function addComLib() {
-  const addComLib = await myCtx.context.configs.comlibAdder()
+  const libDesc = await myCtx.context.configs.comlibAdder()
 
-  if (!addComLib) return
+  if (!libDesc) return
 
-  const exitLib = myCtx.context.comLibAry.find(lib => lib.id === addComLib.id)
-  if (exitLib) {
-    if (addComLib.version === exitLib.version) {
-      myCtx.emitLogs.error('组件库更新', `当前项目已存在组件库 ${addComLib.title}@${addComLib.version}.`)
-      return
-    }
-    if (versionGreaterThan(addComLib.version, exitLib.version)) {//update
-      const idx = myCtx.context.comLibAry.indexOf(exitLib)
-      myCtx.context.comLibAry.splice(idx, 1, addComLib)
-      myCtx.activeLib = addComLib
+  if (typeof myCtx.context.configs.comlibLoader === 'function') {
+    const addedComLib = await myCtx.context.configs.comlibLoader(libDesc)
 
-      myCtx.emitLogs.info('组件库更新完成', `已将组件库 ${addComLib.title} 更新到版本 ${addComLib.version}.`)
+    if (addedComLib) {
+      const exitLib = myCtx.context.comLibAry.find(lib => lib.id === addedComLib.id)
+      if (exitLib) {
+        if (addedComLib.version === exitLib.version) {
+          myCtx.emitLogs.error('组件库更新', `当前项目已存在组件库 ${addedComLib.title}@${addedComLib.version}.`)
+          return
+        }
+        if (versionGreaterThan(addedComLib.version, exitLib.version)) {//update
+          const idx = myCtx.context.comLibAry.indexOf(exitLib)
+          myCtx.context.comLibAry.splice(idx, 1, addedComLib)
+          myCtx.activeLib = addedComLib
+
+          myCtx.emitLogs.info('组件库更新完成', `已将组件库 ${addedComLib.title} 更新到版本 ${addedComLib.version}.`)
+        } else {
+          myCtx.emitLogs.error('组件库更新失败', `当前项目存在更高版本的组件库.`)
+        }
+      } else {
+        myCtx.context.comLibAry.push(addedComLib)
+        const tlib = myCtx.context.comLibAry[myCtx.context.comLibAry.length - 1]
+        myCtx.activeLib = tlib
+        myCtx.emitLogs.info('组件库添加完成', `已将组件库 ${addedComLib.title}@${addedComLib.version} 添加到当前项目中.`)
+      }
     } else {
-      myCtx.emitLogs.error('组件库更新失败', `当前项目存在更高版本的组件库.`)
+      myCtx.emitLogs.error('组件库更新失败', `添加组件库${JSON.stringify(libDesc)}失败.`)
     }
-  } else {
-    myCtx.context.comLibAry.push(addComLib)
-    const tlib = myCtx.context.comLibAry[myCtx.context.comLibAry.length - 1]
-    myCtx.activeLib = tlib
-    myCtx.emitLogs.info('组件库添加完成', `已将组件库 ${addComLib.title}@${addComLib.version} 添加到当前项目中.`)
   }
+
 
   //
   // context.comLibAry.forEach((comLib, comLibIndex) => {
@@ -289,38 +294,38 @@ function renderComItem(lib, com) {
     return
   }
 
-  return (
-    // <div key={com.namespace} ref={ele => ele & (ref.current = ele as any)}
-    <div key={com.namespace}
-         data-namespace={com.namespace}
-         className={css.com}
-      // onMouseDown={evt((et: any) => {
-      //   if (et.target.tagName.match(/input/gi) || !myCtx.show) {
-      //     return true//TODO input 全局事件待处理
-      //   }
-      //   mouseDown(et, com, lib)
-      // })}
-         onClick={evt((et: any) => {
-           if (et.target.tagName.match(/input/gi) || !myCtx.show) {
-             return true//TODO input 全局事件待处理
-           }
-           click(lib, com)
-         })}>
-      <div className={css.title}>
-        {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
-          <div className={css.comIconFallback}>{com.title?.substr(0, 1)}</div>
-        ) : (
-          <div className={css.comIcon} style={{backgroundImage: `url(${com.icon})`}}/>
-        )}
-        <span className={css.comText}>{com.title}</span>
+  if (myCtx.matchCom(com)) {
+    return (
+      // <div key={com.namespace} ref={ele => ele & (ref.current = ele as any)}
+      <div key={com.namespace}
+           data-namespace={com.namespace}
+           className={css.com}
+        // onMouseDown={evt((et: any) => {
+        //   if (et.target.tagName.match(/input/gi) || !myCtx.show) {
+        //     return true//TODO input 全局事件待处理
+        //   }
+        //   mouseDown(et, com, lib)
+        // })}
+           onClick={evt((et: any) => {
+             if (et.target.tagName.match(/input/gi)) {
+               return true//TODO input 全局事件待处理
+             }
+             click(lib, com)
+           })}>
+        <div className={css.title}>
+          {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
+            <div className={css.comIconFallback}>{com.title?.substr(0, 1)}</div>
+          ) : (
+            <div className={css.comIcon} style={{backgroundImage: `url(${com.icon})`}}/>
+          )}
+          <span className={css.comText}>{com.title}</span>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 function click(lib, com: T_XGraphComDef) {
-  myCtx.show = false
-
   const instanceModel = new ComSeedModel({
     namespace: com.namespace,
     version: com.version,

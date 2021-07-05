@@ -367,7 +367,7 @@ function OutputComs({onComplete}) {
   if (calculateComs.length > 0) {
     jsxAry.push(
       <div key={'normal'} className={css.com}>
-        <div className={css.comTitle}>计算组件</div>
+        <div className={css.comTitle}>常规计算</div>
         {
           calculateComs.map(def => {
             return (
