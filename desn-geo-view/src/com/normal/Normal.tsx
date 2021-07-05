@@ -70,7 +70,7 @@ export default function Normal({mouseDown}) {
             if (nowWidth !== realEle.offsetWidth) {
               model.style.width = '100%'//100% width
               model.style.display = 'block'
-            } else if (nowWidth === model.parent.$el.offsetWidth) {
+            } else if (nowWidth === model.parent.getInnerWidth()) {
               model.style.width = '100%'//100% width
               model.style.display = 'block'
             } else {

@@ -8,9 +8,11 @@
  */
 import React from 'react'
 
-//import {Tooltip} from 'antd'
+import {Tooltip} from 'antd'
 import RightOutlined from '@ant-design/icons/RightOutlined'
 import DownOutlined from '@ant-design/icons/DownOutlined'
+import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
+
 import css from './Catelog.less'
 
 import {observe} from '@mybricks/rxui'
@@ -57,19 +59,19 @@ function RenderGroup(group: NS_Configurable.Group, isChild: boolean = false) {
   if (group.ifVisible && !group.ifVisible()) {
     return
   }
+
+  const groupTitle = group.title!==void 0?group.title:'未标题组'
   return (
     <div key={group.id} className={`${css.group}
                      ${group.folded ? css.folded : css.unfold}
                      ${isChild ? css.child : ''}
                      ${typeof group.fixedAtBottom === 'function' && group.fixedAtBottom() ? css.fixedAtBottom : ''}`}>
-      <div className={isChild || group.title ? css.groupTitle : ''}>
+      <div className={css.groupTitle}>
         {
-          group.title ? (
-            <div className={css.text}>
-              <p dangerouslySetInnerHTML={{__html: group.title}}/>
-              {(group.description && group.title) && Tip(group.description)}
-            </div>
-          ) : null
+          <div className={css.text}>
+            <p dangerouslySetInnerHTML={{__html: groupTitle}}/>
+            {(group.description) && Tip(group.description)}
+          </div>
         }
         {isChild && group.items && group.items.length ?
           <div className={css.action}
@@ -211,13 +213,13 @@ function EditItem({item}: { item: { id, type: string, title, description, option
 }
 
 function Tip(description: string) {
-  // return (
-  //   <Tooltip title={
-  //     <span className={css.descriptionTitle}>{description}</span>
-  //   } className={css.description}>
-  //     <InfoCircleOutlined/>
-  //   </Tooltip>
-  // )
+  return (
+    <Tooltip title={
+      <span className={css.descriptionTitle}>{description}</span>
+    } className={css.description}>
+      <InfoCircleOutlined/>
+    </Tooltip>
+  )
 }
 
 function clickSwitch(e: any, group: NS_Configurable.Group): void {

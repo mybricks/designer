@@ -132,19 +132,7 @@ export default abstract class DesignerContext {
       if (!cfg.comlibLoader || typeof cfg.comlibLoader !== 'function') {
         throw new Error(`Invalid comlibLoader config.`)
       }
-      th._configs = Object.assign({stage: {type: 'pc'}}, cfg, {
-        comlibLoader() {
-          return new Promise(resolve => {
-            const promise = cfg.comlibLoader()
-            if (typeof promise === 'object' && typeof promise.then === 'function') {
-              promise.then(libs => {
-                th.comLibAry = libs
-                resolve(libs)
-              })
-            }
-          })
-        }
-      })
+      th._configs = Object.assign({stage: {type: 'pc'}}, cfg)
     }
   }
 

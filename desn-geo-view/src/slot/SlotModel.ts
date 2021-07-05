@@ -126,6 +126,11 @@ export default class SlotModel extends BaseUIModel {
     return this._renderKey || this.id
   }
 
+  getInnerWidth() {
+    const elWidth = this.$el.offsetWidth
+    return elWidth - (this.style.paddingLeft||0) - (this.style.paddingRight||0)
+  }
+
   addDebugTempCom(com: GeoComModel) {
     ignore(com)
     this.comsAddedInDebug.push(com)
