@@ -89,14 +89,14 @@ export default function Mask() {
                 <div className={css.itemTitle}>
                   <div className={css.titleBar}>
                     {box.title}
-                    {
-                      box.shortcuts ? (
-                        <span className={css.shortcuts}
-                              onClick={evt(e => showShortcuts(e, box.shortcuts)).stop}>
-                            <NS_Icons.config/>
-                          </span>
-                      ) : null
-                    }
+                    {/*{*/}
+                    {/*  box.shortcuts ? (*/}
+                    {/*    <span className={css.shortcuts}*/}
+                    {/*          onClick={evt(e => showShortcuts(e, box.shortcuts)).stop}>*/}
+                    {/*        <NS_Icons.config/>*/}
+                    {/*      </span>*/}
+                    {/*  ) : null*/}
+                    {/*}*/}
                   </div>
                   {diagramsJSX}
                 </div>
