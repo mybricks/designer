@@ -8,9 +8,11 @@
  */
 import React from 'react'
 
-//import {Tooltip} from 'antd'
+import {Tooltip} from 'antd'
 import RightOutlined from '@ant-design/icons/RightOutlined'
 import DownOutlined from '@ant-design/icons/DownOutlined'
+import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
+
 import css from './Catelog.less'
 
 import {observe} from '@mybricks/rxui'
@@ -211,13 +213,13 @@ function EditItem({item}: { item: { id, type: string, title, description, option
 }
 
 function Tip(description: string) {
-  // return (
-  //   <Tooltip title={
-  //     <span className={css.descriptionTitle}>{description}</span>
-  //   } className={css.description}>
-  //     <InfoCircleOutlined/>
-  //   </Tooltip>
-  // )
+  return (
+    <Tooltip title={
+      <span className={css.descriptionTitle}>{description}</span>
+    } className={css.description}>
+      <InfoCircleOutlined/>
+    </Tooltip>
+  )
 }
 
 function clickSwitch(e: any, group: NS_Configurable.Group): void {
