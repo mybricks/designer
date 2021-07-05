@@ -22,7 +22,7 @@ export function get(geoViewContext: GeoViewContext) {
   const normalCategary = new NS_Configurable.Category('页面布局')
   rtn.push(normalCategary)
 
-  const normalGroup = new NS_Configurable.Group();
+  const normalGroup = new NS_Configurable.Group('');
   normalCategary.addGroup(normalGroup)
 
   // normalGroup.addItem(createEdtItem(geoViewContext, {

@@ -50,9 +50,9 @@ function getComEditors(comContext: ComContext, onlyShortcuts: boolean) {
   const comCategary = new NS_Configurable.Category(comDef ? comDef.title : notFoundTitle)
   rtn.push(comCategary)
 
-  const normalGroup = new NS_Configurable.Group()
+  const normalGroup = new NS_Configurable.Group(``)
   normalGroup.addItem(createEdtItem(comContext, {
-    title: `组件标题`,
+    title: `标题`,
     type: 'text',
     description: `您可以修改成更有意义的标题，新的标题也会同时出现在导航栏以及逻辑视图中`,
     value: {
@@ -333,7 +333,7 @@ function getComEditors(comContext: ComContext, onlyShortcuts: boolean) {
   // }
 
   //-------------------------------------------------------------------------------
-  const sysGroup = new NS_Configurable.Group()
+  const sysGroup = new NS_Configurable.Group('')
   sysGroup.fixedAt = 'bottom'
 
   comCategary.addGroup(sysGroup)

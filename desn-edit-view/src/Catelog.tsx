@@ -59,19 +59,19 @@ function RenderGroup(group: NS_Configurable.Group, isChild: boolean = false) {
   if (group.ifVisible && !group.ifVisible()) {
     return
   }
+
+  const groupTitle = group.title!==void 0?group.title:'未标题组'
   return (
     <div key={group.id} className={`${css.group}
                      ${group.folded ? css.folded : css.unfold}
                      ${isChild ? css.child : ''}
                      ${typeof group.fixedAtBottom === 'function' && group.fixedAtBottom() ? css.fixedAtBottom : ''}`}>
-      <div className={isChild || group.title ? css.groupTitle : ''}>
+      <div className={css.groupTitle}>
         {
-          group.title ? (
-            <div className={css.text}>
-              <p dangerouslySetInnerHTML={{__html: group.title}}/>
-              {(group.description && group.title) && Tip(group.description)}
-            </div>
-          ) : null
+          <div className={css.text}>
+            <p dangerouslySetInnerHTML={{__html: groupTitle}}/>
+            {(group.description) && Tip(group.description)}
+          </div>
         }
         {isChild && group.items && group.items.length ?
           <div className={css.action}
