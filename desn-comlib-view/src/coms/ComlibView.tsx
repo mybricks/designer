@@ -210,7 +210,7 @@ export default function ComlibView({mode}) {
           </div>
 
           {idx === comLibAry.length - 1 && (
-            <div className={css.addComBtn} onClick={addComLib}>添加组件库</div>
+            <div className={css.addComBtn} onClick={addComLib}><span>+</span>添加组件库</div>
           )}
         </div>
       )
@@ -339,8 +339,8 @@ function renderComItem(lib, com) {
       // <div key={com.namespace} ref={ele => ele & (ref.current = ele as any)}
       <div key={com.namespace}
            data-namespace={com.namespace}
-          //  className={css.com}
-          className={`${css.comItem} ${isJS ? css.notAllowed : ''}`}
+        //  className={css.com}
+           className={`${css.comItem} ${isJS ? css.notAllowed : ''}`}
         // onMouseDown={evt((et: any) => {
         //   if (et.target.tagName.match(/input/gi) || !myCtx.show) {
         //     return true//TODO input 全局事件待处理
@@ -352,9 +352,9 @@ function renderComItem(lib, com) {
                return true//TODO input 全局事件待处理
              }
              if (!isJS) {
-              click(lib, com)
+               click(lib, com)
              }
-            //  click(lib, com)
+             //  click(lib, com)
            })}>
         {/* <div className={css.title}>
           {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
