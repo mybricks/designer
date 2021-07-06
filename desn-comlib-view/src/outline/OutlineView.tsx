@@ -40,7 +40,9 @@ export default function OutlineView() {
     }
   }), {from: 'parents'});
 
-  return (
+  const coms = outlinerContext.coms
+
+  return coms&&coms.length>0?(
     <div className={css.view}>
       {/*<div className={css.titleBar}>*/}
       {/*  组件*/}
@@ -48,8 +50,10 @@ export default function OutlineView() {
       {/*<div className={css.body}>*/}
       {/*  */}
       {/*</div>*/}
-      <RenderComs coms={outlinerContext.coms}/>
+      <RenderComs coms={coms}/>
     </div>
+  ):(
+    <div className={css.empty}>组件为空</div>
   )
 }
 
@@ -77,7 +81,7 @@ function RenderCom({com}: { com: ComItem }) {
            onClick={com.focus}
            onDoubleClick={com.switchView}>
         <img className={css.comIcon}
-          src={(com.icon === './icon.png' || !/^(https:)/.test(com.icon)) ? ICON_COM_DEFAULT : com.icon}/>
+             src={(com.icon === './icon.png' || !/^(https:)/.test(com.icon)) ? ICON_COM_DEFAULT : com.icon}/>
         {/*<img className={css.comIcon}*/}
         {/*     src={ICON_COM_DEFAULT}/>*/}
         <div className={css.comItemContent}>

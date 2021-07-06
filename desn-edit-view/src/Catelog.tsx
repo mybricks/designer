@@ -60,7 +60,7 @@ function RenderGroup(group: NS_Configurable.Group, isChild: boolean = false) {
     return
   }
 
-  const groupTitle = group.title!==void 0?group.title:'未标题组'
+  const groupTitle = group.title!==void 0?group.title:''
   return (
     <div key={group.id} className={`${css.group}
                      ${group.folded ? css.folded : css.unfold}
