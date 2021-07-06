@@ -134,7 +134,9 @@ function Lines() {
                       className={css.pathBg}
                       onClick={evt(click).stop.prevent}
                       onDoubleClick={evt(dblClick).stop.prevent}/>
-            <polyline points={points} className={`${css.pathFront} ${model.errorInfo ? css.error : ''}`}
+            <polyline points={points} className={`${css.pathFront} 
+            // ${model.errorInfo ? css.error : ''}
+            `}
                       onClick={evt(click).stop.prevent}
               // markerEnd={arrowRef}
             />
