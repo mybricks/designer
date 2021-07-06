@@ -502,12 +502,12 @@ function ExpandableCatalog({name, children}: { name: string, children: ReactChil
   return (
     <div key={name} className={css.catalog} style={hide ? {display: 'none'} : {}}>
       <div className={css.cataTitle} onClick={() => setExpand(!isExpand)}>
+        <span className={css.cataTitleText}>{name}</span>
         {
           isExpand
             ? <DownOutlined style={{color: '#fa6400'}}/>
             : <RightOutlined style={{color: '#fa6400'}}/>
         }
-        <span className={css.cataTitleText}>{name}</span>
       </div>
       <div className={css.coms} style={{display: isExpand ? 'block' : 'none'}}>
         {children}

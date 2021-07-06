@@ -14,7 +14,7 @@ import OutlineView from './outline/OutlineView'
 import {useObservable} from "@mybricks/rxui";
 
 class MyContext {
-  activeTabId: string = 'coms'
+  activeTabId: string = 'outline'
 
   isActiveCatelog(id) {
     return this.activeTabId === id

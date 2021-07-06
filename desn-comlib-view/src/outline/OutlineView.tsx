@@ -42,12 +42,13 @@ export default function OutlineView() {
 
   return (
     <div className={css.view}>
-      <div className={css.titleBar}>
-        组件
-      </div>
-      <div className={css.body}>
-        <RenderComs coms={outlinerContext.coms}/>
-      </div>
+      {/*<div className={css.titleBar}>*/}
+      {/*  组件*/}
+      {/*</div>*/}
+      {/*<div className={css.body}>*/}
+      {/*  */}
+      {/*</div>*/}
+      <RenderComs coms={outlinerContext.coms}/>
     </div>
   )
 }
@@ -70,14 +71,15 @@ function RenderCom({com}: { com: ComItem }) {
       <div className={`${css.item} ${com.active ? css.active : ''} 
                        ${!com.hasUI ? css.noUI : ''}
                        ${com.isModule ? css.module : ''}
+                       ${!com.visible ? css.hidden : ''}
                        `
       }
            onClick={com.focus}
            onDoubleClick={com.switchView}>
-        {/*<img className={css.comIcon}*/}
-        {/*     src={com.icon || ICON_COM_DEFAULT}/>*/}
         <img className={css.comIcon}
-             src={ICON_COM_DEFAULT}/>
+             src={com.icon || ICON_COM_DEFAULT}/>
+        {/*<img className={css.comIcon}*/}
+        {/*     src={ICON_COM_DEFAULT}/>*/}
         <div className={css.comItemContent}>
           <span className={css.comName}>
             {com.title}
@@ -86,7 +88,7 @@ function RenderCom({com}: { com: ComItem }) {
             </span>
           </span>
           <span className={css.comInfo}>
-            {/*{!com.visible && '(隐藏)'}*/}
+            {!com.visible && '(隐藏)'}
           </span>
           {/*<span className={css.comInfo}>*/}
           {/*  {com.curFrame && `(${com.curFrame.title})`}*/}

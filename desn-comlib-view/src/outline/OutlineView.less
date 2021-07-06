@@ -12,7 +12,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  padding: 10px 0 0 0;
+  overflow: auto;
 
   .titleBar {
     height: 35px;
@@ -76,6 +77,12 @@
           color: #AAA;
           font-style: italic !important;
         }
+      }
+    }
+
+    .hidden {
+      .comName, .comInfo {
+        opacity: 0.3;
       }
     }
 

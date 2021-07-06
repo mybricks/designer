@@ -18,6 +18,9 @@ export function getEnv(model: GeoComModel, comContext: ComContext) {
   const cfgEnv = context.configs.com?.env
 
   return Object.assign({}, {
+    // exeScript(id,params,callback){
+    //   debugger
+    // },
     createPortal(jsx) {
       return emitPage.createPortal(jsx)
     },
