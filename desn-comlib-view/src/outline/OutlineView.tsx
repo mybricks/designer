@@ -77,7 +77,7 @@ function RenderCom({com}: { com: ComItem }) {
            onClick={com.focus}
            onDoubleClick={com.switchView}>
         <img className={css.comIcon}
-             src={com.icon || ICON_COM_DEFAULT}/>
+          src={(com.icon === './icon.png' || !/^(https:)/.test(com.icon)) ? ICON_COM_DEFAULT : com.icon}/>
         {/*<img className={css.comIcon}*/}
         {/*     src={ICON_COM_DEFAULT}/>*/}
         <div className={css.comItemContent}>
