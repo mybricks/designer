@@ -20,6 +20,7 @@ import {ComSeedModel, DesignerContext, NS_Emits, T_XGraphComDef, T_XGraphComLib}
 import css from './ComlibView.less'
 
 let myCtx: Ctx
+const moveDomMap: any = {}
 
 export default function ComlibView({mode, model}) {
   const context = observe(DesignerContext, {from: 'parents'})
@@ -62,8 +63,12 @@ export default function ComlibView({mode, model}) {
     let comLibAry = myCtx.context.comLibAry ? myCtx.context.comLibAry.filter(comLib => (comLib.visible === void 0 || comLib.visible) && comLib._visible) : []
     return comLibAry.map((comLib, idx) => {
       const title = `${comLib.title}(${comLib.version})`
+      const key = `${comLib.id}_${comLib.version}`
+      if (!moveDomMap[key]) {
+        moveDomMap[key] = {}
+      }
       return (
-        <div className={css.collapsePanel} key={`${comLib.id}_${comLib.title}_${comLib.version}_${idx}`}>
+        <div className={css.collapsePanel} key={key}>
           <div className={css.header} onClick={evt(() => {
             comLib._expanded = !comLib._expanded
           }).stop}>
@@ -143,6 +148,23 @@ function renderComItem(lib, com) {
     const isJS = !!(com.rtType && com.rtType.match(/js|ts/gi))
     return (
       <div
+        ref={(node) => {
+          const libKey = `${lib.id}_${lib.version}`
+          if (!moveDomMap[libKey]) return
+          
+          const comKey = `${com.namespace}_${com.version}`
+
+          if (!moveDomMap[libKey][comKey]) {
+            domToImg.toPng(node).then(function (dataUrl: string) {
+              var img = new Image();
+              img.src = dataUrl;
+              img.style.cursor = 'move'
+              moveDomMap[libKey][comKey] = img
+            }).catch(function (error: Error) {
+              console.error(error)
+            })
+          }
+        }}
         key={com.namespace}
         data-namespace={com.namespace}
         className={`${css.comItem} ${isJS ? css.notAllowed : ''}`}
@@ -192,22 +214,23 @@ function click(com: T_XGraphComDef) {
 }
 
 function mouseDown(evt: any, com: T_XGraphComDef, lib: any) {
-  const currentNode = getCurrentNode(evt)
+  const libKey = `${lib.id}_${lib.version}`
+
+  if (!moveDomMap[libKey]) return
+
+  const comKey = `${com.namespace}_${com.version}`
+  const moveDom = moveDomMap[libKey][comKey]
+
+  if (!moveDom) return
+
   const moveNode = document.createElement('div')
 
   moveNode.style.position = 'absolute'
   moveNode.style.zIndex = '1000'
   moveNode.style.opacity = '0.3'
-
-  domToImg.toPng(currentNode)
-    .then(function (dataUrl: string) {
-      var img = new Image();
-      img.src = dataUrl;
-      img.style.cursor = 'move'
-      moveNode.appendChild(img)
-    }).catch(function (error: Error) {
-      console.error(error)
-    })
+  moveNode.style.backgroundColor = '#e1e4e7'
+  moveNode.style.border = '1px solid #616C81'
+  moveNode.appendChild(moveDom)
 
   let viewPo: any
   dragable(evt, ({po: {x, y}, epo: {ex, ey}, dpo: {dx, dy}}: any, state: string) => {
@@ -299,6 +322,7 @@ function coms(comLib: T_XGraphComLib) {
     const renderedItem = renderComItem(comLib, com)
     renderedItem && noCatalogAry.push(renderedItem)
   })
+
   if (noCatalogAry.length > 0) {
     let noCatalogComs = (
       <div key={'noCatalog'} className={css.basicList}>
