@@ -395,7 +395,7 @@ export default function StageView(
           })
         }
       }
-      onLoad && onLoad(views)
+      onLoad && onLoad(views, model)
     }
   })
 

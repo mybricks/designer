@@ -25,7 +25,7 @@ class MyContext {
   }
 }
 
-function ComsPanel({mode}) {
+function ComsPanel({mode, model}) {
   const myContext = useObservable(MyContext);
 
   return (
@@ -43,7 +43,7 @@ function ComsPanel({mode}) {
         </div>
       </div>
       <div style={{position: 'relative', display: myContext.activeTabId === 'coms' ? 'block' : 'none', height: 'calc(100% - 42px)', overflowY: 'auto'}}>
-        <ComlibView mode={mode}/>
+        <ComlibView mode={mode} model={model}/>
         <div
           // className={`${!myContext.mode ? css.disCover : ''}`}
         ></div>

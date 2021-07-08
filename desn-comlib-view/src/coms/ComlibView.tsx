@@ -7,24 +7,21 @@
  * mailTo:mybricks@126.com wechatID:ALJZJZ
  */
 
-import css from './ComlibView.less';
-import {evt, observe, useComputed, useObservable, uuid} from '@mybricks/rxui';
-import {Button, Select, Tooltip} from 'antd'
-import PlusOutlined from '@ant-design/icons/PlusOutlined';
-import DownOutlined from '@ant-design/icons/DownOutlined';
-import RightOutlined from '@ant-design/icons/RightOutlined';
-import CaretRightOutlined from '@ant-design/icons/CaretRightOutlined'
-import {ComSeedModel, DesignerContext, NS_Emits, T_XGraphComDef} from '@sdk';
-
-import {versionGreaterThan} from "@utils";
-import React, {ReactChild, useState} from 'react';
 import Ctx from './Ctx'
+import {domToImg} from '../utils'
+import React, {ReactChild, useState} from 'react';
+import {getPosition, versionGreaterThan} from "@utils";
+import DownOutlined from '@ant-design/icons/DownOutlined'
+import RightOutlined from '@ant-design/icons/RightOutlined'
+import CaretRightOutlined from '@ant-design/icons/CaretRightOutlined'
+import {evt, dragable, observe, useComputed, useObservable, uuid} from '@mybricks/rxui'
+import {ComSeedModel, DesignerContext, NS_Emits, T_XGraphComDef, T_XGraphComLib} from '@sdk'
 
-const {Option} = Select;
+import css from './ComlibView.less'
 
 let myCtx: Ctx
 
-export default function ComlibView({mode}) {
+export default function ComlibView({mode, model}) {
   const context = observe(DesignerContext, {from: 'parents'})
   const emitSnap = useObservable(NS_Emits.Snap, {expectTo: 'parents'})
   const emitItems = useObservable(NS_Emits.Component, {expectTo: 'parents'})
@@ -36,6 +33,7 @@ export default function ComlibView({mode}) {
     emitSnap,
     emitItems,
     mode,
+    model,
     renderedLib: [],
   }), {to: 'children'}, [mode])
 
@@ -55,160 +53,28 @@ export default function ComlibView({mode}) {
           } else {
             lib._visible = false
           }
-          // if (lib._visible &&
-          //   (!myCtx.activeLib || !myCtx.activeLib._visible)) {
-          //   myCtx.activeLib = lib
-          // }
-        }
-      })
-
-      // const activeLib = optionlibs.find(lib => lib.id === myCtx.activeLib?.id)
-      // if (!activeLib) {
-      //   myCtx.activeLib = optionlibs[0]
-      // }
-    }
-  })
-
-  // 组件库选项
-  const libTitleAry = useComputed(() => {
-    const options: JSX.Element[] = []
-    if (myCtx.activeLib && myCtx.context.comLibAry) {
-      myCtx.context.comLibAry.map((lib, idx) => {
-        if ((lib.visible === void 0 || lib.visible) && lib._visible) {
-          options.push(
-            <Option
-              key={lib.id + 'title'}
-              className={`${css.lib} ${myCtx.activeLib === lib ? css.libActive : ''}`}
-              value={idx}>
-              {lib.title} {lib.version}
-            </Option>
-          )
         }
       })
     }
-
-    return options
   })
-
-  // 组件列表
-  // const coms = useComputed(() => {
-  //   const rdLib = []
-  //   const activeLib = myCtx.activeLib
-  //   if (activeLib) {
-  //     if (!rdLib.find(lib => lib.id === activeLib.id)) {
-  //       let ary = []
-  //       if (activeLib.comAray) {
-  //         let noCatalogAry: JSX.Element[] = []
-  //         let hasCatalog = false
-  //         activeLib.comAray.forEach((com, idx) => {
-  //           // if (Array.isArray(com.comAray)) {
-  //           //   hasCatalog = true
-  //           //   const coms = com.comAray.map((com) => {
-  //           //     const jsx = renderComItem(activeLib, com)
-  //           //     return jsx
-  //           //   })
-  //           //   ary.push(
-  //           //     <ExpandableCatalog
-  //           //       key={`${com.title}-${idx}`}
-  //           //       name={com.title}
-  //           //     >
-  //           //       {coms}
-  //           //     </ExpandableCatalog>
-  //           //   )
-  //           // } else {
-  //             const renderedItem = renderComItem(activeLib, com)
-  //             renderedItem && noCatalogAry.push(renderedItem)
-  //           //}
-  //         })
-  //         if (noCatalogAry.length > 0) {
-  //           let noCatalogComs = (
-  //             <div key={'noCatalog'} className={css.coms}>
-  //               {noCatalogAry}
-  //             </div>
-  //           )
-  //           if (hasCatalog) {
-  //             noCatalogComs = (
-  //               <ExpandableCatalog key="others" name="其它">
-  //                 <>{noCatalogComs}</>
-  //               </ExpandableCatalog>
-  //             )
-  //           }
-  //           ary.push(noCatalogComs)
-  //         }
-  //       }
-
-  //       rdLib.push(
-  //         {id: activeLib.id, content: ary}
-  //       )
-  //     }
-  //   }
-
-  //   return rdLib.map(({id, content}, idx) => {
-  //       return (
-  //         <div key={id}
-  //              style={{display: id === activeLib.id ? 'block' : 'none'}}>
-  //           {content}
-  //         </div>
-  //       )
-  //     }
-  //   )
-  // })
-
-  // 分类选项
-  // const catalogOptions = useComputed(() => {
-  //   return myCtx.renderedLib.reduce((obj: Record<string, JSX.Element[]>, {
-  //     id,
-  //     content
-  //   }: { id: string, content: JSX.Element[] }) => {
-  //     let options: JSX.Element[] = []
-  //     if (content[0].key !== 'noCatalog') {
-  //       options = content.map((catalog, idx) => (
-  //         <Option
-  //           value={catalog.props.name}
-  //           key={idx}
-  //         >
-  //           {catalog.props.name}
-  //         </Option>
-  //       ))
-  //     }
-  //     return {
-  //       ...obj,
-  //       [id]: options
-  //     }
-  //   }, {})
-  // })
-
-  // 当前组件库索引
-  // const libIdx = myCtx.activeLib ? myCtx.context.comLibAry.findIndex(lib => lib.id === myCtx.activeLib.id) : -1
 
   const RenderComlibs = useComputed(() => {
     let comLibAry = myCtx.context.comLibAry ? myCtx.context.comLibAry.filter(comLib => (comLib.visible === void 0 || comLib.visible) && comLib._visible) : []
     return comLibAry.map((comLib, idx) => {
       const title = `${comLib.title}(${comLib.version})`
       return (
-        <div className={css.collapsePanel}>
+        <div className={css.collapsePanel} key={`${comLib.id}_${comLib.title}_${comLib.version}_${idx}`}>
           <div className={css.header} onClick={evt(() => {
             comLib._expanded = !comLib._expanded
           }).stop}>
             <CaretRightOutlined className={`${css.arrowIcon} ${comLib._expanded ? css.expandedIcon : ''}`}/>
-            <Tooltip title={title} placement='topLeft'>
-              <div className={css.title}>
-                {title}
-              </div>
-            </Tooltip>
+            <div className={css.title}>
+              {title}
+            </div>
           </div>
           <div className={css.comLibsContainer} style={{height: comLib._expanded ? '100%' : 0}}>
             {coms(comLib)}
-            {/* {useMemo(() => {
-              return (
-                <div>123</div>
-              )
-            }, [])} */}
-            {/* <div className={css.basicList}>
-              {coms(comLib)}
-            </div> */}
           </div>
-
           {idx === comLibAry.length - 1 && (
             <div className={css.addComBtn} onClick={addComLib}><span>+</span>添加组件库</div>
           )}
@@ -222,44 +88,8 @@ export default function ComlibView({mode}) {
          onClick={evt(null).stop}>
       <div className={css.toolbarLayout}>
         <div className={css.libSelection}>
-          {/* <Select
-            value={libIdx >= 0 ? libIdx : '[组件库为空]'}
-            onChange={(value) => {
-              myCtx.activeLib = myCtx.context.comLibAry[value]
-            }}
-            style={{width: 190}}>
-            {libTitleAry}
-          </Select>
-          {
-            myCtx.context.configs.comlibAdder ? (
-              <Button
-                shape="circle"
-                icon={<PlusOutlined/>}
-                className={css.addComBtn}
-                onClick={addComLib}
-              />
-            ) : null
-          } */}
           {RenderComlibs}
         </div>
-        {/* 分类选择框 */}
-        {/*<div className={css.catalogSelection}>*/}
-        {/*  <Select*/}
-        {/*    defaultValue=""*/}
-        {/*    onChange={(value) => {*/}
-        {/*      myCtx.activeCatalog = value*/}
-        {/*    }}*/}
-        {/*    style={{width: 190}}*/}
-        {/*  >*/}
-        {/*    <Option value="" key="-1">*/}
-        {/*      全部类型*/}
-        {/*    </Option>*/}
-        {/*    {myCtx.activeLib ? catalogOptions[myCtx.activeLib.id] : null}*/}
-        {/*  </Select>*/}
-        {/*</div>*/}
-        {/* <div className={css.comsSelection}>
-          {coms}
-        </div> */}
       </div>
     </div>
   )
@@ -300,29 +130,6 @@ async function addComLib() {
       myCtx.emitLogs.error('组件库更新失败', `添加组件库${JSON.stringify(libDesc)}失败.`)
     }
   }
-
-
-  //
-  // context.comLibAry.forEach((comLib, comLibIndex) => {
-  //   if (comLib.id === addComLib.id && comLib.version !== addComLib.version) {
-  //     upgradeIndex = comLibIndex
-  //     upgradeLib = addComLib
-  //   }else{
-  //
-  //   }
-  // })
-  //
-  // if (upgradeIndex === -1) {
-  //   context.comLibAry.push(addComLib)
-  //   const tlib = context.comLibAry[context.comLibAry.length - 1]
-  //
-  //   myCtx.activeLib = tlib
-  // } else {
-  //   context.comLibAry.splice(upgradeIndex, 1, upgradeLib)
-  //   myCtx.activeLib = context.comLibAry[upgradeIndex];
-  // }
-
-  //myCtx.show = true
 }
 
 function renderComItem(lib, com) {
@@ -332,38 +139,30 @@ function renderComItem(lib, com) {
   if (com.visibility !== void 0 && com.visibility === false) {
     return
   }
-
   if (myCtx.matchCom(com)) {
     const isJS = !!(com.rtType && com.rtType.match(/js|ts/gi))
     return (
-      // <div key={com.namespace} ref={ele => ele & (ref.current = ele as any)}
-      <div key={com.namespace}
-           data-namespace={com.namespace}
-        //  className={css.com}
-           className={`${css.comItem} ${isJS ? css.notAllowed : ''}`}
-        // onMouseDown={evt((et: any) => {
-        //   if (et.target.tagName.match(/input/gi) || !myCtx.show) {
-        //     return true//TODO input 全局事件待处理
-        //   }
-        //   mouseDown(et, com, lib)
-        // })}
-           onClick={evt((et: any) => {
-             if (et.target.tagName.match(/input/gi)) {
-               return true//TODO input 全局事件待处理
-             }
-             if (!isJS) {
-               click(lib, com)
-             }
-             //  click(lib, com)
-           })}>
-        {/* <div className={css.title}>
-          {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
-            <div className={css.comIconFallback}>{com.title?.substr(0, 1)}</div>
-          ) : (
-            <div className={css.comIcon} style={{backgroundImage: `url(${com.icon})`}}/>
-          )}
-          <span className={css.comText}>{com.title}</span>
-        </div> */}
+      <div
+        key={com.namespace}
+        data-namespace={com.namespace}
+        className={`${css.comItem} ${isJS ? css.notAllowed : ''}`}
+        onMouseDown={evt((et: any) => {
+          if (et.target.tagName.match(/input/gi)) {
+            return true//TODO input 全局事件待处理
+          }
+          if (!isJS) {
+            mouseDown(et, com, lib)
+          }
+        })}
+        onClick={evt((et: any) => {
+          if (et.target.tagName.match(/input/gi)) {
+            return true//TODO input 全局事件待处理
+          }
+          if (!isJS) {
+            click(com)
+          }
+        })}
+      >
         <div className={css.widgetIconWrapper}>
           {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
             <div className={css.comIconFallback}>{com.title?.substr(0, 1)}</div>
@@ -374,42 +173,14 @@ function renderComItem(lib, com) {
         <div className={css.title}>{com.title}</div>
       </div>
     )
-    // return (
-    //   // <div key={com.namespace} ref={ele => ele & (ref.current = ele as any)}
-    //   <div key={com.namespace}
-    //        data-namespace={com.namespace}
-    //        className={css.com}
-    //     // onMouseDown={evt((et: any) => {
-    //     //   if (et.target.tagName.match(/input/gi) || !myCtx.show) {
-    //     //     return true//TODO input 全局事件待处理
-    //     //   }
-    //     //   mouseDown(et, com, lib)
-    //     // })}
-    //        onClick={evt((et: any) => {
-    //          if (et.target.tagName.match(/input/gi)) {
-    //            return true//TODO input 全局事件待处理
-    //          }
-    //          click(lib, com)
-    //        })}>
-    //     <div className={css.title}>
-    //       {com.icon === './icon.png' || !/^(https:)/.test(com.icon) ? (
-    //         <div className={css.comIconFallback}>{com.title?.substr(0, 1)}</div>
-    //       ) : (
-    //         <div className={css.comIcon} style={{backgroundImage: `url(${com.icon})`}}/>
-    //       )}
-    //       <span className={css.comText}>{com.title}</span>
-    //     </div>
-    //   </div>
-    // )
   }
 }
 
-function click(lib, com: T_XGraphComDef) {
+function click(com: T_XGraphComDef) {
   const instanceModel = new ComSeedModel({
     namespace: com.namespace,
     version: com.version,
     rtType: com.rtType,
-    //style,
     data: JSON.parse(JSON.stringify(com.data ? com.data : {}))
   })
 
@@ -420,58 +191,61 @@ function click(lib, com: T_XGraphComDef) {
   snap.commit()
 }
 
-// function mouseDown(evt: any, com: T_XGraphComDef, lib: any) {
-//   const myCtx = observe(MyContext)
-//
-//   const currentNode = getCurrentNode(evt)
-//   const moveNode = document.createElement('div')
-//   const copyNode = currentNode.cloneNode(true)
-//   moveNode.style.position = 'absolute'
-//   moveNode.style.display = 'none'
-//   moveNode.style.width = '560px'
-//   moveNode.style.background = '#ffffff'
-//   moveNode.style.zIndex = '1000'
-//   moveNode.style.transform = 'scale(.5) translate(-50%, -50%)'
-//   moveNode.appendChild(copyNode)
-//
-//   function move(state, ex: number, ey: number) {
-//     const instanceModel = new ComSeedModel(
-//       {
-//         namespace: com.namespace,
-//         libId: lib.id,
-//         style: {left: ex, top: ey},
-//         data: JSON.parse(JSON.stringify(com.data ? com.data : {}))
-//       }
-//     )
-//
-//     myCtx.emitItems.add(instanceModel, state);
-//   }
-//
-//   dragable(evt, ({po: {x, y}, epo: {ex, ey}, dpo: {dx, dy}}, state) => {
-//     if (state == 'start') {
-//       document.body.appendChild(moveNode)
-//       moveNode.style.top = `${y}px`
-//       moveNode.style.left = `${x}px`
-//       moveNode.style.display = 'block'
-//       return
-//     }
-//     if (state == 'moving') {
-//       myCtx.show = false
-//
-//       moveNode.style.top = `${y + dy}px`
-//       moveNode.style.left = `${x + dx}px`
-//
-//       move('ing', ex, ey)
-//     }
-//     if (state == 'finish') {
-//       document.body.removeChild(moveNode)
-//       move('finish', ex, ey)
-//     }
-//   })
-// }
+function mouseDown(evt: any, com: T_XGraphComDef, lib: any) {
+  const currentNode = getCurrentNode(evt)
+  const moveNode = document.createElement('div')
+
+  moveNode.style.position = 'absolute'
+  moveNode.style.zIndex = '1000'
+  moveNode.style.opacity = '0.3'
+
+  domToImg.toPng(currentNode)
+    .then(function (dataUrl: string) {
+      var img = new Image();
+      img.src = dataUrl;
+      img.style.cursor = 'move'
+      moveNode.appendChild(img)
+    }).catch(function (error: Error) {
+      console.error(error)
+    })
+
+  let viewPo: any
+  dragable(evt, ({po: {x, y}, epo: {ex, ey}, dpo: {dx, dy}}: any, state: string) => {
+    if (state == 'start') {
+      viewPo = getPosition(myCtx.model.getCurModule().slot.$el)
+      document.body.appendChild(moveNode)
+      moveNode.style.top = `${y}px`
+      moveNode.style.left = `${x}px`
+      moveNode.style.display = 'block'
+      return
+    }
+    if (state == 'moving') {
+      moveNode.style.top = `${y + dy}px`
+      moveNode.style.left = `${x + dx}px`
+      move({state: 'ing', ex: ex + viewPo.x, ey: ey + viewPo.y, com, lib})
+    }
+    if (state == 'finish') {
+      document.body.removeChild(moveNode)
+      move({state: 'finish', ex: ex + viewPo.x, ey: ey + viewPo.y, com, lib})
+    }
+  })
+}
+
+function move({state, ex, ey, com, lib}: {state: 'ing' | 'finish' | 'cancel', ex: number, ey: number, com: T_XGraphComDef, lib: any}) {
+  const instanceModel = new ComSeedModel(
+    {
+      namespace: com.namespace,
+      libId: lib.id,
+      style: {left: ex, top: ey},
+      data: JSON.parse(JSON.stringify(com.data ? com.data : {}))
+    }
+  )
+
+  myCtx.emitItems.add(instanceModel, state);
+}
 
 function getCurrentNode(e: any): Node {
-  if ((e && /com/.test(e.className)) || (e.target && /com/.test(e.target.className))) {
+  if ((e && /comItem/.test(e.className)) || (e.target && /comItem/.test(e.target.className))) {
     return e.target || e
   } else {
     return getCurrentNode(e.parentNode || e.target.parentNode)
@@ -490,7 +264,7 @@ export function getInputs() {
 export function getOutputs() {
   return new Proxy({}, {
     get(target: {}, _id: PropertyKey, receiver: any): any {
-      return function (data) {
+      return function (data: any) {
       }
     }
   })
@@ -516,12 +290,12 @@ function ExpandableCatalog({name, children}: { name: string, children: ReactChil
   )
 }
 
-function coms(comLib) {
+function coms(comLib: T_XGraphComLib) {
   const rdLib = []
   let ary = []
   let noCatalogAry: JSX.Element[] = []
   let hasCatalog = false
-  comLib.comAray.forEach((com, idx) => {
+  comLib.comAray.forEach((com) => {
     const renderedItem = renderComItem(comLib, com)
     renderedItem && noCatalogAry.push(renderedItem)
   })

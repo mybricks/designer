@@ -19,6 +19,8 @@ export default class ComLibViewCtx {
 
   mode: 'geo' | 'topl'
 
+  model
+
   matchCom(comDef) {
     if (this.mode) {
       if (this.mode === 'geo') {
