@@ -232,9 +232,11 @@ function mouseDown(evt: any, com: T_XGraphComDef, lib: any) {
   moveNode.style.border = '1px solid #616C81'
   moveNode.appendChild(moveDom)
 
+  let snap: any
   let viewPo: any
   dragable(evt, ({po: {x, y}, epo: {ex, ey}, dpo: {dx, dy}}: any, state: string) => {
     if (state == 'start') {
+      snap = myCtx.emitSnap.start('add component')
       viewPo = getPosition(myCtx.model.getCurModule().slot.$el)
       document.body.appendChild(moveNode)
       moveNode.style.top = `${y}px`
@@ -250,6 +252,7 @@ function mouseDown(evt: any, com: T_XGraphComDef, lib: any) {
     if (state == 'finish') {
       document.body.removeChild(moveNode)
       move({state: 'finish', ex: ex + viewPo.x, ey: ey + viewPo.y, com, lib})
+      snap.commit()
     }
   })
 }
