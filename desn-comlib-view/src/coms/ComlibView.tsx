@@ -159,9 +159,11 @@ function renderComItem(lib, com) {
               var img = new Image();
               img.src = dataUrl;
               img.style.cursor = 'move'
-              moveDomMap[libKey][comKey] = img
+              if (dataUrl.startsWith('data:image/png;')) {
+                moveDomMap[libKey][comKey] = img
+              }
             }).catch(function (error: Error) {
-              console.error(error)
+              // console.error(error)
             })
           }
         }}
