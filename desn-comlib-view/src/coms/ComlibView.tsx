@@ -9,6 +9,7 @@
 
 import Ctx from './Ctx'
 import {domToImg} from '../utils'
+import { ComsPanelContext } from '../index'
 import React, {ReactChild, useState} from 'react';
 import {getPosition, versionGreaterThan} from "@utils";
 import DownOutlined from '@ant-design/icons/DownOutlined'
@@ -22,11 +23,12 @@ import css from './ComlibView.less'
 let myCtx: Ctx
 const moveDomMap: any = {}
 
-export default function ComlibView({mode, model}) {
+export default function ComlibView({mode}) {
   const context = observe(DesignerContext, {from: 'parents'})
   const emitSnap = useObservable(NS_Emits.Snap, {expectTo: 'parents'})
   const emitItems = useObservable(NS_Emits.Component, {expectTo: 'parents'})
   const emitLogs = useObservable(NS_Emits.Logs, {expectTo: 'parents'})
+  const comsPanelCtx = observe(ComsPanelContext, {from: 'parents'})
 
   myCtx = useObservable(Ctx, next => next({
     context,
@@ -34,7 +36,8 @@ export default function ComlibView({mode, model}) {
     emitSnap,
     emitItems,
     mode,
-    model,
+    model: context.model,
+    comsPanelNode: comsPanelCtx.node,
     renderedLib: [],
   }), {to: 'children'}, [mode])
 
@@ -229,17 +232,19 @@ function mouseDown(evt: any, com: T_XGraphComDef, lib: any) {
 
   moveNode.style.position = 'absolute'
   moveNode.style.zIndex = '1000'
-  moveNode.style.opacity = '0.3'
+  moveNode.style.opacity = '0.2'
   moveNode.style.backgroundColor = '#e1e4e7'
   moveNode.style.border = '1px solid #616C81'
   moveNode.appendChild(moveDom)
 
   let snap: any
   let viewPo: any
+  let comsPanelPo: any
   dragable(evt, ({po: {x, y}, epo: {ex, ey}, dpo: {dx, dy}}: any, state: string) => {
     if (state == 'start') {
       snap = myCtx.emitSnap.start('add component')
       viewPo = getPosition(myCtx.model.getCurModule().slot.$el)
+      comsPanelPo = getPosition(myCtx.comsPanelNode)
       document.body.appendChild(moveNode)
       moveNode.style.top = `${y}px`
       moveNode.style.left = `${x}px`
@@ -249,22 +254,32 @@ function mouseDown(evt: any, com: T_XGraphComDef, lib: any) {
     if (state == 'moving') {
       moveNode.style.top = `${y + dy}px`
       moveNode.style.left = `${x + dx}px`
-      move({state: 'ing', ex: ex + viewPo.x, ey: ey + viewPo.y, com, lib})
+      const isIng = x + dx < comsPanelPo.x + comsPanelPo.w ? false : true
+      if (isIng) {
+        moveNode.style.opacity = '0.5'
+      } else {
+        moveNode.style.opacity = '0.2'
+      }
+      move({state: isIng ? 'ing' : 'cancel', left: ex + viewPo.x, top: ey + viewPo.y, com, lib})
     }
     if (state == 'finish') {
       document.body.removeChild(moveNode)
-      move({state: 'finish', ex: ex + viewPo.x, ey: ey + viewPo.y, com, lib})
-      snap.commit()
+      const isFinish = x + dx < comsPanelPo.x + comsPanelPo.w ? false : true
+      move({state: isFinish ? 'finish' : 'cancel', left: ex + viewPo.x, top: ey + viewPo.y, com, lib})
+
+      if (isFinish) {
+        snap.commit()
+      }
     }
   })
 }
 
-function move({state, ex, ey, com, lib}: {state: 'ing' | 'finish' | 'cancel', ex: number, ey: number, com: T_XGraphComDef, lib: any}) {
+function move({state, left, top, com, lib}: {state: 'ing' | 'finish' | 'cancel', left: number, top: number, com: T_XGraphComDef, lib: any}) {
   const instanceModel = new ComSeedModel(
     {
       namespace: com.namespace,
       libId: lib.id,
-      style: {left: ex, top: ey},
+      style: {left, top},
       data: JSON.parse(JSON.stringify(com.data ? com.data : {}))
     }
   )

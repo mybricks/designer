@@ -21,6 +21,8 @@ export default class ComLibViewCtx {
 
   model
 
+  comsPanelNode
+
   matchCom(comDef) {
     if (this.mode) {
       if (this.mode === 'geo') {

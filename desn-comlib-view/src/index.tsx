@@ -13,7 +13,8 @@ import ComlibView from './coms/ComlibView'
 import OutlineView from './outline/OutlineView'
 import {useObservable} from "@mybricks/rxui";
 
-class MyContext {
+export class ComsPanelContext {
+  node: HTMLDivElement | undefined
   activeTabId: string = 'coms'
 
   isActiveCatelog(id) {
@@ -25,11 +26,11 @@ class MyContext {
   }
 }
 
-function ComsPanel({mode, model}) {
-  const myContext = useObservable(MyContext);
+function ComsPanel({mode}) {
+  const myContext = useObservable(ComsPanelContext, {to: 'children'});
 
   return (
-    <div className={css.panel}>
+    <div ref={(node) => node && (myContext.node = node)} className={css.panel}>
       <div className={css.tabs}>
         <div className={`${css.tab} 
                          ${myContext.activeTabId === 'coms' ? css.tabActived : ''}`}
@@ -43,7 +44,7 @@ function ComsPanel({mode, model}) {
         </div>
       </div>
       <div style={{position: 'relative', display: myContext.activeTabId === 'coms' ? 'block' : 'none', height: 'calc(100% - 42px)', overflowY: 'auto'}}>
-        <ComlibView mode={mode} model={model}/>
+        <ComlibView mode={mode}/>
         <div
           // className={`${!myContext.mode ? css.disCover : ''}`}
         ></div>

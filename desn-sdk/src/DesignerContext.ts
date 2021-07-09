@@ -31,6 +31,8 @@ export default abstract class DesignerContext {
 
   focusModelAry: Array<T_Focusable> = []
 
+  model
+
   focusOn(model) {
     if (this.focusModelAry && this.focusModelAry.indexOf(model) >= 0) {
       return true

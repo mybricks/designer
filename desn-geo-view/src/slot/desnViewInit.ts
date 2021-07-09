@@ -105,6 +105,12 @@ export function getEmitItem(viewCtx: GeoViewContext) {
         }
 
         return gmodel.runtime.id
+      } else if (state === 'cancel') {
+        mover.hide()
+        if (viewCtx.placeholder && viewCtx.placeholder.index !== void 0) {
+          viewCtx.placeholder.y = void 0
+          viewCtx.placeholder.index = void 0
+        }
       }
     },
     addSlot(comId: string, slotId: string, slotTitle?: string): boolean {
