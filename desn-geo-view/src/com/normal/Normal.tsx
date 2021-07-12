@@ -100,10 +100,13 @@ export default function Normal({mouseDown}) {
 
         setTimeout(v => {
           const stag = document.createElement("style");
-          document.head.appendChild(stag);
+          // document.head.appendChild(stag);
+          document.head.insertBefore(stag, document.head.querySelectorAll("style")[0])
 
           const styleSheets = document.styleSheets
-          const styleSheet = styleSheets[styleSheets.length - 1]
+          const styleSheet = styleSheets[0]
+          // const styleSheet = styleSheets[styleSheets.length - 1]
+          // const styleSheet = styleSheets[styleSheets.length - 2]
 
           styleSheet.addRule(`${model.id}-hover`, '');
 
