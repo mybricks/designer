@@ -47,7 +47,7 @@ export default function ConView({frameModel}: { frameModel: FrameModel|DiagramMo
           <path d="M0,0 L0,4 L3,2 z" className={css.error}/>
         </marker>
       </defs>
-      <Beautify frameModel={frameModel}/>
+      {/*<Beautify frameModel={frameModel}/>*/}
       {cons}
     </svg>
   )

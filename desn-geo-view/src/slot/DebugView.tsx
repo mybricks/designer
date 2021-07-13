@@ -100,6 +100,14 @@ export default function DebugView() {
       }
     }
 
+    const ctCfgs = context.configs, geoCfg = ctCfgs.stageView?.geo
+
+    if (geoCfg?.type?.toUpperCase() === 'MOBILE') {
+      rtn.push(css.mobile)
+    } else if (geoCfg?.type?.toUpperCase() === 'PC') {
+      rtn.push(css.pc)
+    }
+
     return rtn.join(' ')
   })
 
@@ -123,10 +131,10 @@ export default function DebugView() {
 function computeZoomViewStyle() {
   const {context, viewModel, emitItem} = observe(GeoViewContext)
 
-  const cfgCanvas = context.configs.stage
+  const cfgCanvas = context.configs.stageView
 
-  let height: number = viewModel.style.height || cfgCanvas?.style?.height as number,
-    width: number = viewModel.style.width || cfgCanvas?.style?.width as number
+  let height: number = viewModel.style.height || cfgCanvas?.geo?.style?.height as number,
+    width: number = viewModel.style.width || cfgCanvas?.geo?.style?.width as number
 
   const viewStyle = viewModel.style
   return {
@@ -144,43 +152,48 @@ function computeZoomViewStyle() {
 function componentWillMounted(wrapStyle) {
   const {context, viewModel, emitItem} = observe(GeoViewContext)
 
-  const ctCfgs = context.configs, stageCfg = ctCfgs.stage
+  const ctCfgs = context.configs, stageCfg = ctCfgs.stageView
 
-  let ly = stageCfg?.layout?.toLowerCase();
-  if (ly == 'absolute') {
-    viewModel.style.setLayout('absolute')
-  }
-  // else {
-  //   viewModel.style.setLayout('flex-column')
-  // }
-  if (viewModel.style.zoom === null) {
-    viewModel.style.zoom = ctCfgs.stage.zoom || 1;
-  }
+  if (stageCfg) {
+    const geoCfg = stageCfg.geo
+    if (geoCfg) {
+      let ly = geoCfg.layout?.toLowerCase();
+      if (ly == 'absolute') {
+        viewModel.style.setLayout('absolute')
+      }
+      // else {
+      //   viewModel.style.setLayout('flex-column')
+      // }
+      if (viewModel.style.zoom === null) {
+        viewModel.style.zoom = ctCfgs.stageView.zoom || 1;
+      }
 
-  let height = viewModel.style.height || stageCfg?.style?.height,
-    width = viewModel.style.width || stageCfg?.style?.width;
-  switch (stageCfg.type.toLowerCase()) {
-    case 'mobile': {
-      height = height || ViewCfgDefault.canvasMobile.height;
-      width = width || ViewCfgDefault.canvasMobile.width;
-      break;
-    }
-    case 'custom': {
-      height = height || ViewCfgDefault.canvasCustom.height;
-      width = width || ViewCfgDefault.canvasCustom.width;
-      break;
-    }
-  }
+      let height = viewModel.style.height || geoCfg?.style?.height,
+        width = viewModel.style.width || geoCfg?.style?.width;
+      switch (geoCfg.type.toLowerCase()) {
+        case 'mobile': {
+          height = height || ViewCfgDefault.canvasMobile.height;
+          width = width || ViewCfgDefault.canvasMobile.width;
+          break;
+        }
+        case 'custom': {
+          height = height || ViewCfgDefault.canvasCustom.height;
+          width = width || ViewCfgDefault.canvasCustom.width;
+          break;
+        }
+      }
 
-  viewModel.style.height = height;
-  viewModel.style.width = width;
+      viewModel.style.height = height;
+      viewModel.style.width = width;
 
-  wrapStyle.maxHeight = height
+      wrapStyle.maxHeight = height
 
-  if (stageCfg.style) {
-    for (let k in stageCfg.style) {
-      if (k.match(/^background(Image|Color)$/gi)) {
-        viewModel.style[k] = stageCfg.style[k]
+      if (geoCfg.style) {
+        for (let k in geoCfg.style) {
+          if (k.match(/^background(Image|Color)$/gi)) {
+            viewModel.style[k] = stageCfg.style[k]
+          }
+        }
       }
     }
   }

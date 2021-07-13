@@ -62,7 +62,7 @@ export type T_DesignerConfig = {
 
     keymaps: () => { [keys: string]: () => void }
 
-    stage: {
+    stageView: {
         '@x': 1 | 2
         zoom: number,
         type: 'pc' | 'mobile',

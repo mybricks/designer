@@ -134,7 +134,6 @@ export default function Normal({mouseDown}) {
 
               if (isItemEditable) {
                 styleSheet.addRule(`.${model.id}-hover ${selector}`, `
-              position:relative;
               pointer-events: auto !important;
               cursor:pointer;
             `)

@@ -79,7 +79,7 @@ export default function StageView(
           frame: void 0
         }
 
-        const stageType = desnContext.configs.stage.type
+        const stageType = desnContext.configs.stageView.type
 
         if (stageType === void 0 || stageType !== 'onlyLogic') {
           mainModule.slot = new GeoViewModel()
@@ -152,7 +152,7 @@ export default function StageView(
       ctx.emitMessage = emitMessage
       ctx.emitLogs = emitLogs
 
-      const stageType = desnContext.configs.stage.type
+      const stageType = desnContext.configs.stageView.type
 
       if (stageType === void 0 || stageType !== 'onlyLogic') {
         ctx.hasGeo = true

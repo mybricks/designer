@@ -134,7 +134,8 @@ export default abstract class DesignerContext {
       if (!cfg.comlibLoader || typeof cfg.comlibLoader !== 'function') {
         throw new Error(`Invalid comlibLoader config.`)
       }
-      th._configs = Object.assign({stage: {type: 'pc'}}, cfg)
+
+      th._configs = Object.assign({stageView: {type: 'pc'}}, cfg)
     }
   }
 
