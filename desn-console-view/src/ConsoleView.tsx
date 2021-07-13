@@ -109,8 +109,7 @@ export default function ConsoleView({logger}) {
                 ) : null
               }
               <div className={css.content}>
-                <p dangerouslySetInnerHTML={{__html: log.content}}>
-                </p>
+                <pre>{log.content}</pre>
               </div>
             </div>
           )

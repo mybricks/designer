@@ -173,10 +173,10 @@ const JointDebug = (function () {
           }
 
           const strVal = typeof value === 'object' && value ?
-            JSON.stringify(value) :
+            JSON.stringify(value, null, 2) :
             String(value)
 
-          emitLogs.info('程序运行', `${comName} | 经过点 ${jointModel.type === 'input' ? '传入' : '传出'} ${strVal}`,
+          emitLogs.info('程序运行', `${comName} | 经过点 ${jointModel.type === 'input' ? '传入' : '传出'} \n ${strVal}`,
             () => {
               jointModel.hoverExeval(value)
             },
@@ -224,7 +224,7 @@ const PinDebug = (function () {
           // }
 
           const strVal = typeof val === 'object' && val ?
-            JSON.stringify(val) :
+            JSON.stringify(val, null, 2) :
             String(val)
 
           directionTitle = directionTitle || (pinModel.direction == 'input' || pinModel.direction == 'inner-input' ? '传入' : '传出')
@@ -236,8 +236,7 @@ const PinDebug = (function () {
             tt = `当前入参 `
           }
 
-
-          emitLogs.info('程序运行', `${tt}${pinModel.title} ${directionTitle} ${strVal}`,
+          emitLogs.info('程序运行', `${tt}${pinModel.title} ${directionTitle} \n ${strVal}`,
             () => {
               pinModel.hoverExeval(val, from)
             },
