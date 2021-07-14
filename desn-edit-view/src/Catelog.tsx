@@ -8,7 +8,7 @@
  */
 import React from 'react'
 
-import {Tooltip} from 'antd'
+// import {Tooltip} from 'antd'
 import RightOutlined from '@ant-design/icons/RightOutlined'
 import DownOutlined from '@ant-design/icons/DownOutlined'
 import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
@@ -70,7 +70,7 @@ function RenderGroup(group: NS_Configurable.Group, isChild: boolean = false) {
         {
           <div className={css.text}>
             <p dangerouslySetInnerHTML={{__html: groupTitle}}/>
-            {(group.description) && Tip(group.description)}
+            {/* {(group.description) && Tip(group.description)} */}
           </div>
         }
         {isChild && group.items && group.items.length ?
@@ -201,7 +201,7 @@ function EditItem({item}: { item: { id, type: string, title, description, option
             {showTitle ?
               <div className={css.itemTitle}>
                 <span dangerouslySetInnerHTML={{__html: item.title}}/>
-                {(title && showTitle && description) && Tip(description)}
+                {/* {(title && showTitle && description) && Tip(description)} */}
               </div> : null
             }
             {Editor}
@@ -212,15 +212,15 @@ function EditItem({item}: { item: { id, type: string, title, description, option
   }
 }
 
-function Tip(description: string) {
-  return (
-    <Tooltip title={
-      <span className={css.descriptionTitle}>{description}</span>
-    } className={css.description}>
-      <InfoCircleOutlined/>
-    </Tooltip>
-  )
-}
+// function Tip(description: string) {
+//   return (
+//     <Tooltip title={
+//       <span className={css.descriptionTitle}>{description}</span>
+//     } className={css.description}>
+//       <InfoCircleOutlined/>
+//     </Tooltip>
+//   )
+// }
 
 function clickSwitch(e: any, group: NS_Configurable.Group): void {
   group.folded = !group.folded
