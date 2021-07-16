@@ -216,7 +216,8 @@ function computeZoomViewStyle() {
     //width: viewModel.style.width + 'px',
     minHeight: viewStyle.height + 'px',
     transform: `scale(${viewStyle.zoom})`,
-    backgroundColor: viewStyle.backgroundColor || 'RGBA(255,255,255,1)',
+    //background: background || 'RGBA(255,255,255,1)',
+    ...(viewStyle.background || {})
   }
 }
 

@@ -146,6 +146,7 @@ function computeZoomViewStyle() {
     paddingLeft: viewStyle.paddingLeft || 0,
     paddingTop: viewStyle.paddingTop || 0,
     paddingRight: viewStyle.paddingRight || 0,
+    ...(viewStyle.background || {})
   }
 }
 

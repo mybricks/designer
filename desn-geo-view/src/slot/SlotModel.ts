@@ -27,9 +27,11 @@ export class SlotStyleModel {
 
   height: number
 
-  backgroundColor: string
-
-  backgroundImage: string
+  background:string
+  //
+  // backgroundColor: string
+  //
+  // backgroundImage: string
 
   paddingTop: number
   paddingRight: number

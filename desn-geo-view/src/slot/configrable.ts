@@ -39,14 +39,14 @@ export function get(geoViewContext: GeoViewContext) {
   // }))
 
   normalGroup.addItem(createEdtItem(geoViewContext, {
-    title: '背景色',
-    type: 'colorPicker',
-    description: `设置页面的背景色`,
+    title: '背景',
+    type: 'background',
+    description: `设置页面的背景色及背景图片`,
     value: {
       get() {
-        return model.style.backgroundColor
+        return model.style.background
       }, set(val) {
-        model.style.backgroundColor = val
+        model.style.background = val
       }
     }
   }))
