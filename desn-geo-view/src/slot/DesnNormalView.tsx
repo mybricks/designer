@@ -217,7 +217,7 @@ function computeZoomViewStyle() {
     minHeight: viewStyle.height + 'px',
     transform: `scale(${viewStyle.zoom})`,
     //background: background || 'RGBA(255,255,255,1)',
-    ...(viewStyle.background || {})
+    ...(viewStyle.background || {backgroundColor: 'RGBA(255,255,255,1)'})
   }
 }
 
