@@ -124,6 +124,25 @@ export function getEnv(model: GeoComModel, comContext: ComContext) {
   }, cfgEnv || {})
 }
 
+export function getComLogger(model: GeoComModel, comContext: ComContext) {
+  const {comDef, emitLogs} = comContext
+
+  return {
+    trace(msg, catelog) {
+      emitLogs.info(comDef.title + (catelog ? `-${catelog}` : ''), msg)
+    },
+    info(msg, catelog) {
+      emitLogs.info(comDef.title + (catelog ? `-${catelog}` : ''), msg)
+    },
+    warn(msg, catelog) {
+      emitLogs.warn(comDef.title + (catelog ? `-${catelog}` : ''), msg)
+    },
+    error(msg, catelog) {
+      emitLogs.error(comDef.title + (catelog ? `-${catelog}` : ''), msg)
+    }
+  }
+}
+
 export function getStyle(debug?: GeoComDebugModel) {
   const {model} = observe(ComContext)
 

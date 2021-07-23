@@ -10,7 +10,7 @@ import {observe, useComputed} from "@mybricks/rxui";
 import css from "./NormalDebug.less";
 import {useMemo} from "react";
 import {ComContext} from "../GeoCom";
-import {getEnv, getStyle} from "../comCommons";
+import {getComLogger, getEnv, getStyle} from "../comCommons";
 import {refactorStyle} from "../../geoUtil";
 import GeoComDebugModel from "../GeoComDebugModel";
 import SlotDebug from "../../slot/SlotDebug";
@@ -43,7 +43,8 @@ export default function NormalDebug() {
                          slots={renderSlots(dmodel)}
                          style={getStyle()}
                          inputs={dmodel.inputs}
-                         outputs={dmodel.outputs}/>
+                         outputs={dmodel.outputs}
+                         logger={getComLogger(model, comContext)}/>
   }, [])
 
   return <div ref={el => model.$el = el}

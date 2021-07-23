@@ -10,7 +10,7 @@ import {evt, observe, useComputed} from "@mybricks/rxui";
 import css from "./Normal.less";
 import React, {useEffect, useMemo} from "react";
 import {ComContext} from "../GeoCom";
-import {getEnv, getInputs, getOutputs, getStyle} from "../comCommons";
+import {getComLogger, getEnv, getInputs, getOutputs, getStyle} from "../comCommons";
 import {edtOnSelectorAry, getEditorPath} from '../editorUtils'
 import {GeoComModel} from "../GeoComModel";
 import Slot from "../../slot/Slot";
@@ -190,20 +190,21 @@ export default function Normal({mouseDown}) {
             slots={renderSlots(model, 'dev')}
             inputs={getInputs()}
             outputs={getOutputs()}
+            logger={getComLogger(model,comContext)}
             key={model.id + 'dev'}
-            // _onError_={(ex, type) => {
-            //   console.error(ex)
-            //   emitLogs.error('组件异常', ex.stack.replaceAll(/\/n/gi, '<br/>'))
-            //
-            //   if (type === 'render') {
-            //     return (
-            //       <div className={css.error}>
-            //         {model.runtime.title}组件发生错误:<br/>
-            //         {ex.message}
-            //       </div>
-            //     )
-            //   }
-            // }}
+            _onError_={(ex, type) => {
+              console.error(ex)
+              emitLogs.error('组件异常', ex.stack.replaceAll(/\/n/gi, '<br/>'))
+
+              if (type === 'render') {
+                return (
+                  <div className={css.error}>
+                    {model.runtime.title}组件发生错误:<br/>
+                    {ex.message}
+                  </div>
+                )
+              }
+            }}
           />
         )
       }
